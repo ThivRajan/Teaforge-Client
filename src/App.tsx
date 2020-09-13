@@ -1,25 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+
+const Center = styled.div`
+	text-align: center;
+`;
+
+const Title = styled.h1`
+	color: red;
+`;
 
 function App() {
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.tsx</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-			</header>
-		</div>
+		<Center>
+			<Title>Teaforge</Title>
+			<p>Classic board games of deceipt</p>
+			<button>Join Game</button>
+		</Center>
 	);
 }
 
