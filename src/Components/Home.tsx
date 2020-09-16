@@ -17,20 +17,22 @@ const Grid = styled.div`
 `;
 
 const Card = styled.div`
-	background-color: lightgrey;
-	border-radius: 3px;
-
-	width: 450px;
-	height: 130px;
 	margin:auto;
 
+	background-color: lightgrey;
+	border-radius: 3px;
+	width: 450px;
+	height: 130px;
+	
+	padding: 10px;
 	// display: grid;
 	// grid-template-columns: 1fr 3fr;
-	display: flex;
-	flex-basis: 0;
-	flex-shrink: 0;
-	flex-grow: 1;
-	flex-direction: column;
+
+	// display: flex;
+	// flex-basis: 0;
+	// flex-shrink: 0;
+	// flex-grow: 1;
+	// flex-direction: column;
 
 
 	img {
@@ -49,7 +51,7 @@ const Card = styled.div`
 	}
 
 	h2 {
-		margin-top: 10px;
+		margin-top: 0px;
 		margin-left: 5px;
 		margin-bottom: 0px;
 	}
