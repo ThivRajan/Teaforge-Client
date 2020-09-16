@@ -1,49 +1,48 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
-import Home from './Components/Home';
-import Description from './Components/Description';
-import JoinForm from './Components/JoinForm';
-import CreateForm from './Components/CreateForm';
-import RoomLobby from './Components/RoomLobby';
+import Home from './components/Home';
+import Description from './components/Description';
+import JoinForm from './components/JoinForm';
+import CreateForm from './components/CreateForm';
+import RoomLobby from './components/RoomLobby';
 
 // const Center = styled.div`
 // 	text-align: center;
 // 	list-style-position: inside;
 // `;
 
-const Grid = styled.div`
-	display: grid;
-	grid-template-columns: 1fr;
-	text-align: center;
-	list-style-position: inside;
-`;
+// const Grid = styled.div`
+// 	display: grid;
+// 	grid-template-columns: 1fr;
+// 	text-align: center;
+// 	list-style-position: inside;
+// 	border: 1px solid;
+// `;
 
 const App = () => {
 	return (
-		<Grid>
-			<Switch>
-				<Route path="/lobby">
-					<RoomLobby />
-				</Route>
+		<Switch>
+			<Route path="/lobby">
+				<RoomLobby />
+			</Route>
 
-				<Route path="/join">
-					<JoinForm />
-				</Route>
-				<Route path="/create">
-					<CreateForm />
-				</Route>
+			<Route path="/join">
+				<JoinForm />
+			</Route>
+			<Route path="/create">
+				<CreateForm />
+			</Route>
 
-				<Route path="/resistance">
-					<Description />
-				</Route>
+			<Route path="/resistance">
+				<Description />
+			</Route>
 
-				<Route path="/">
-					<Home />
-				</Route>
-			</Switch>
-		</Grid>
+			<Route path="/">
+				<Home />
+			</Route>
+		</Switch>
 	);
 };
 

@@ -2,33 +2,81 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const Button = styled.button`
-	margin: 1rem 0;
-`;
+// import logo from '../assets/fist.png';
 
-const Card = styled.div`
-	border: 1px solid;
-	width: 50vw;
-	margin:auto;
+const Button = styled.button`
+	margin: 1rem auto;
 `;
 
 const Title = styled.h1`
 	color: red;
 `;
 
+const Grid = styled.div`
+	text-align: center;
+`;
+
+const Card = styled.div`
+	background-color: lightgrey;
+	border-radius: 3px;
+
+	width: 450px;
+	height: 130px;
+	margin:auto;
+
+	// display: grid;
+	// grid-template-columns: 1fr 3fr;
+	display: flex;
+	flex-basis: 0;
+	flex-shrink: 0;
+	flex-grow: 1;
+	flex-direction: column;
+
+
+	img {
+		// grid-column: 1;
+		// grid-row: 1;
+		
+		width: 100%; 
+		margin: 10px 0;
+	}
+
+	div {
+		// grid-column: 2;
+
+		text-align: left;
+		margin-right: 5px;
+	}
+
+	h2 {
+		margin-top: 10px;
+		margin-left: 5px;
+		margin-bottom: 0px;
+	}
+`;
+
 const Home = () => {
 	return (
-		<div>
+		<Grid>
 			<Title>Teaforge</Title>
 			<p>Classic board games of deceipt</p>
 			<Link to="/join">
 				<Button>Join Game</Button>
 			</Link>
+			<Link to="/create">
+				<Button>Create Game</Button>
+			</Link>
 			<Card>
-				<h3>Resistance</h3>
-				<p>--Description--</p>
+				{/* <img src={logo} alt="Resistance Logo"></img> */}
+				<div>
+					<h2>Resistance</h2>
+					<p>Successfully complete your missions while spies try to infiltrate
+					your ranks and sabotage them.
+					</p>
+					<span>5-10</span>
+				</div>
 			</Card>
-		</div>
+		</Grid>
 	);
 
 };
