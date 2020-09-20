@@ -1,23 +1,37 @@
 import styled from 'styled-components';
 
 const Form = styled.form`
+
 	text-align: center;
-	position: absolute;
-	top: 0; bottom: 0; left: 0; right: 0;
 	margin: auto;
 	height: max-content;
-	width: max-content;
+	width: 60%;
 
 	padding: 10px;
-	background-color: grey;
-
-	h3 {
-		color: blue;
-	}
 
 	input {
-		background-color: lightblue;
-		color: red;
+		background-color: lightgrey;
+		color: black;
+		border: none;
+		padding: 10px;
+		margin: 10px;
+		border-radius: 3px;
+		width: 80%;
+		font-size: 20px;
+
+		::placeholder {
+		   color: grey;
+		}
+
+		:focus {
+			outline: none;
+		}
+		
+	}
+
+	button {
+		width: 40%;
+		margin-top: 10px;
 	}
 `;
 

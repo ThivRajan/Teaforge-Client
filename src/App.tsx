@@ -8,41 +8,33 @@ import JoinForm from './components/JoinForm';
 import CreateForm from './components/CreateForm';
 import RoomLobby from './components/RoomLobby';
 
-// const Center = styled.div`
-// 	text-align: center;
-// 	list-style-position: inside;
-// `;
-
-// const Grid = styled.div`
-// 	display: grid;
-// 	grid-template-columns: 1fr;
-// 	text-align: center;
-// 	list-style-position: inside;
-// 	border: 1px solid;
-// `;
+import GlobalStyle from './styles/Global';
 
 const App = () => {
 	return (
-		<Switch>
-			<Route path="/lobby">
-				<RoomLobby />
-			</Route>
+		<>
+			<GlobalStyle />
+			<Switch>
+				<Route path="/lobby">
+					<RoomLobby />
+				</Route>
 
-			<Route path="/join">
-				<JoinForm />
-			</Route>
-			<Route path="/create">
-				<CreateForm />
-			</Route>
+				<Route path="/join">
+					<JoinForm />
+				</Route>
+				<Route path="/create">
+					<CreateForm />
+				</Route>
 
-			<Route path="/resistance">
-				<Description />
-			</Route>
+				<Route path="/resistance">
+					<Description />
+				</Route>
 
-			<Route path="/">
-				<Main />
-			</Route>
-		</Switch>
+				<Route path="/">
+					<Main />
+				</Route>
+			</Switch>
+		</>
 	);
 };
 

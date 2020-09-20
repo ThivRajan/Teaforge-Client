@@ -1,18 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import styled from 'styled-components';
 import Form from '../styles/Form';
-
-const Grid = styled.div`
-	height: 100vh;
-`;
 
 const JoinForm = () => {
 	return (
-		<Grid>
+		<>
+			<h1>Join Room</h1>
 			<Form>
-				<h3>Join Room</h3>
 				<input placeholder="Name"></input>
 				<br />
 				<input placeholder="Room Key"></input>
@@ -24,7 +19,7 @@ const JoinForm = () => {
 					<button>Cancel</button>
 				</Link>
 			</Form>
-		</Grid>
+		</>
 
 	);
 };

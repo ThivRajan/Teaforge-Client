@@ -3,14 +3,11 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import fist from '../assets/fist.png';
-import GlobalStyle from '../styles/Global';
 
 const Button = styled.button`
-	// margin: 1rem 0.5rem;
 	margin-bottom: 1.2rem;
 	margin-right: 0.5rem;
 	margin-left: 0.5rem;
-	width: 10rem;
 
 	padding-bottom: 5px;
 	padding-top 7px;
@@ -29,50 +26,22 @@ const Button = styled.button`
 		cursor: pointer;
 	}
 
+	:focus {
+		outline: none;
+	}
 `;
-
-// const Button = styled.button`
-// 	// margin: 1rem 0.5rem;
-// 	margin-bottom: 1.2rem;
-// 	margin-right: 0.5rem;
-// 	margin-left: 0.5rem;
-// 	width: 10rem;
-
-// 	padding-bottom: 5px;
-// 	padding-top 7px;
-
-// 	font-size: 1rem;
-// 	background: black;
-// 	color: #fc3030;
-// 	border: 2px solid #fc3030; 
-// 	border-radius: 5px;
-
-// 	transition: background 300ms;
-
-// 	:hover {
-// 		background: #fc3030;
-// 		color: black;
-// 		cursor: pointer;
-// 	}
-
-// `;
-
-// const Title = styled.h1`
-// 	// color: tomato;
-// `;
 
 const Main = () => {
 	return (
 		<>
-			<GlobalStyle />
 			<h1>Teaforge</h1>
 			<p>Play classic games of deceipt with your friends</p>
 			<Link to="/join">
 				<Button>Join Game</Button>
 			</Link>
-			{/* <Link to="/create">
+			<Link to="/create">
 				<Button>Create Game</Button>
-			</Link> */}
+			</Link>
 			<GameList />
 		</>
 	);
@@ -86,15 +55,6 @@ const CardContainer = styled.div`
 `;
 
 const Card = styled.a`
-	// #faf5ed - off-white
-	// #b3cae3 - blue
-	// #ff6363 - lightred 
-	// #292940 - darkblue 
-
-	// #274282 - div
-	// #5676c7 - span
-
-
 	color: white;
 	background-color: #4a4a4a;
 	
@@ -111,14 +71,12 @@ const Card = styled.a`
 	
 	:hover {
         box-shadow: 0px 0px 15px 5px #707070;
-        // transition: box-shadow 300ms;
 	} 
 	
 	h2 {
         margin: 0;
 		font-size: 30px;
 		font-weight: bold;
-		// font-family: 'Signika', sans-serif;	
 		font-family: Kreon, serif;
 		color: white;
     }
@@ -160,7 +118,7 @@ const Card = styled.a`
         grid-row: 1;
 
         text-align: left;
-        height: 100%;
+        // height: 100%;
 
         padding-top: 10px;
         padding-bottom: 15px;
