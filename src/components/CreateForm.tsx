@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Form from '../styles/Form';
+import { OutlineButton } from '../styles/Button';
+import { blue } from '../styles/Global';
 
 const CreateForm = () => {
 	return (
@@ -11,15 +13,14 @@ const CreateForm = () => {
 				<input placeholder="Name"></input>
 				<br />
 				<Link to="/lobby">
-					<button>Join</button>
+					<OutlineButton>Join</OutlineButton>
 				</Link>
 				<Link to="/">
-					<button>Cancel</button>
+					<OutlineButton color={blue}>Cancel</OutlineButton>
 				</Link>
 			</Form>
 		</>
 	);
 };
-
 
 export default CreateForm;

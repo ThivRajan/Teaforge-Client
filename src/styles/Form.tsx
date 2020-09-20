@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const Form = styled.form`
-
 	text-align: center;
 	margin: auto;
 	height: max-content;
@@ -26,13 +25,13 @@ const Form = styled.form`
 		:focus {
 			outline: none;
 		}
-		
 	}
 
 	button {
-		width: 40%;
 		margin-top: 10px;
 	}
+
+	styled
 `;
 
 export default Form;
