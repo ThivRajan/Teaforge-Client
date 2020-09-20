@@ -2,7 +2,7 @@ import React from 'react';
 // import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
-import Home from './components/Home';
+import Main from './components/Main';
 import Description from './components/Description';
 import JoinForm from './components/JoinForm';
 import CreateForm from './components/CreateForm';
@@ -40,7 +40,7 @@ const App = () => {
 			</Route>
 
 			<Route path="/">
-				<Home />
+				<Main />
 			</Route>
 		</Switch>
 	);
