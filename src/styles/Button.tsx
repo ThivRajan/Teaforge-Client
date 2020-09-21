@@ -46,7 +46,7 @@ export const FilledButton = styled.button`
 	:hover {
 		background: ${props => props.color || red};
 		cursor: pointer;
-		filter: brightness(90%);
+		filter: brightness(80%);
 	}
 `;
 

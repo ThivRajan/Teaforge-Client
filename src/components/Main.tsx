@@ -1,8 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import fist from '../assets/fist.png';
+
+import Players from '../styles/Players';
 
 import { OutlineButton } from '../styles/Button';
 
@@ -63,21 +65,6 @@ const Card = styled.a`
 		font-weight: 300;
 
     }
-
-    span {
-        padding: 5px;
-        background: grey;
-        color: white;
-		border-radius: 3px;
-		
-        float: left;
-		margin-top: 10px;
-
-		font-size: 18px;
-		font-family: 'Signika', sans-serif;
-		font-weight: 300;
-
-	}
 	
 	img {
         grid-column: 1;
@@ -110,7 +97,7 @@ const GameList = () => (
 					Successfully complete your missions
 					while spies try to sabotage them.
 				</p>
-				<span>5-10 Players</span>
+				<Players players={'5-10'} />
 			</div>
 		</Card>
 	</CardContainer>

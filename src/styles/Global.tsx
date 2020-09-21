@@ -11,11 +11,12 @@ const GlobalStyle = createGlobalStyle`
 		font-family: Kreon, serif;
 	}
 
-	p {
+	i, p, u {
 		font-family: Signika, sans-serif;
+		font-weight: 300;
 	}
 
-	h1 {
+	h1, h2, h3, h4 {
 		font-family: Kreon, serif;
 	}
 `;

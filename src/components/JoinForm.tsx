@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Form from '../styles/Form';
-import { OutlineButton } from '../styles/Button';
+import { FilledButton } from '../styles/Button';
 import { blue } from '../styles/Global';
 
 const JoinForm = () => {
@@ -15,10 +15,10 @@ const JoinForm = () => {
 				<input placeholder="Room Key"></input>
 				<br />
 				<Link to="/lobby">
-					<OutlineButton  >Join</OutlineButton>
+					<FilledButton color={blue}>Join</FilledButton>
 				</Link>
 				<Link to="/">
-					<OutlineButton color={blue}>Cancel</OutlineButton>
+					<FilledButton>Cancel</FilledButton>
 				</Link>
 			</Form>
 		</>
