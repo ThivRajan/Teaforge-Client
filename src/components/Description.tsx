@@ -6,6 +6,8 @@ import ReactModal from 'react-modal';
 import Players from '../styles/Players';
 import { FilledButton } from '../styles/Button';
 import { blue } from '../styles/Global';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled(ReactModal)`
 	background: #4a4a4a;
@@ -31,10 +33,10 @@ const Container = styled(ReactModal)`
 	flex-direction: column;
 
 	h1 {
-		margin: 10px;
+		margin-top: 10px;
 	}
 
-	button {
+	div button {
 		max-width: 200px;
 	}
 
@@ -56,6 +58,18 @@ const Container = styled(ReactModal)`
 		width: max-content;
 		margin-bottom: 10px;
 	}
+
+	:focus {
+		outline: none;
+	}
+`;
+
+const CloseIcon = styled(FontAwesomeIcon)`
+	font-size: 25px;
+
+	:hover {
+		filter: brightness(80%);
+	}
 `;
 
 const GameDescription: React.FC<{ modalOpen: boolean; closeModal: Function }> =
@@ -65,8 +79,12 @@ const GameDescription: React.FC<{ modalOpen: boolean; closeModal: Function }> =
 			<Container
 				isOpen={modalOpen}
 				shouldCloseOnOverlayClick={true}
+				shouldCloseOnEsc={true}
 				onRequestClose={() => closeModal()}
+				shouldFocusAfterRender={true}
+				shouldReturnFocusAfterClose={true}
 			>
+				<CloseIcon icon={faTimes} onClick={() => closeModal()} />
 				<h1>Resistance</h1>
 				<i>Your goal is to either successfully complete or sabotage a mission</i>
 				<div>
