@@ -14,9 +14,16 @@ const Container = styled(ReactModal)`
 	border-radius: 3px;
 	overflow-y: auto;
 
+	width: 800px;
 	max-width: 80%;
-	max-height: 80%;
-	margin: 15% auto;
+
+	height: max-content;
+	max-height: 75%;
+	
+	position: absolute;
+	top: 0; bottom: 0; right: 0; left: 0;
+	margin: auto;
+
 	padding: 20px;
 
 	text-align: center;
@@ -64,10 +71,10 @@ const GameDescription: React.FC<{ modalOpen: boolean; closeModal: Function }> =
 				<i>Your goal is to either successfully complete or sabotage a mission</i>
 				<div>
 					<Link to="/join">
-						<FilledButton color={blue}>Join</FilledButton>
+						<FilledButton color={blue}>Join Room</FilledButton>
 					</Link>
 					<Link to="/create">
-						<FilledButton>Create</FilledButton>
+						<FilledButton>Create Room</FilledButton>
 					</Link>
 				</div>
 

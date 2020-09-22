@@ -12,12 +12,9 @@ const Main = () => {
 	return (
 		<>
 			<h1>Teaforge</h1>
-			<p>Play classic games of deceipt with your friends</p>
+			<p>Play classic games of deceipt online</p>
 			<Link to="/join">
 				<OutlineButton>Join Game</OutlineButton>
-			</Link>
-			<Link to="/create">
-				<OutlineButton>Create Game</OutlineButton>
 			</Link>
 			<GameList />
 		</>
@@ -46,7 +43,7 @@ const Card = styled.div`
 	transition: box-shadow 200ms;
 	
 	:hover {
-		box-shadow: 0px 0px 15px 5px #707070;
+		box-shadow: 0px 5px 13px 1px #707070;
 		cursor: pointer;
 	} 
 	
@@ -103,7 +100,7 @@ const GameList = () => {
 							Successfully complete your missions
 							while spies try to sabotage them.
 						</p>
-						<Players players={'5-10'} />
+						<Players players={'5-10 players'} />
 					</div>
 				</Card>
 			</CardContainer>
