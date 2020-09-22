@@ -90,9 +90,7 @@ const Card = styled.div`
 const GameList = () => {
 	const [modalOpen, setModalOpen] = useState<boolean>(false);
 	const openModal = (): void => setModalOpen(true);
-	const closeModal = (): void => {
-		setModalOpen(false);
-	};
+	const closeModal = (): void => setModalOpen(false);
 
 	return (
 		<>
@@ -109,7 +107,7 @@ const GameList = () => {
 					</div>
 				</Card>
 			</CardContainer>
-			<Description modalOpen={modalOpen} onRequestClose={closeModal} />
+			<Description modalOpen={modalOpen} closeModal={closeModal} />
 		</>
 	);
 

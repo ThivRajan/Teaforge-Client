@@ -51,13 +51,14 @@ const Container = styled(ReactModal)`
 	}
 `;
 
-const GameDescription: React.FC<{ modalOpen: boolean; handleClose: Function }> =
-	({ modalOpen, handleClose }) => {
+const GameDescription: React.FC<{ modalOpen: boolean; closeModal: Function }> =
+	({ modalOpen, closeModal }) => {
+
 		return (
 			<Container
 				isOpen={modalOpen}
 				shouldCloseOnOverlayClick={true}
-				onRequestClose={handleClose}
+				onRequestClose={() => closeModal()}
 			>
 				<h1>Resistance</h1>
 				<i>Your goal is to either successfully complete or sabotage a mission</i>
