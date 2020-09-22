@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import fist from '../assets/fist.png';
 
 import Players from '../styles/Players';
-
 import { OutlineButton } from '../styles/Button';
+import Description from './Description';
 
 const Main = () => {
 	return (
@@ -31,7 +31,7 @@ const CardContainer = styled.div`
 	margin: auto;
 `;
 
-const Card = styled.a`
+const Card = styled.div`
 	color: white;
 	background-color: #4a4a4a;
 	
@@ -44,10 +44,10 @@ const Card = styled.a`
 	display: grid;
 	grid-template-columns: 4fr 11fr;
 	transition: box-shadow 200ms;
-
 	
 	:hover {
-        box-shadow: 0px 0px 15px 5px #707070;
+		box-shadow: 0px 0px 15px 5px #707070;
+		cursor: pointer;
 	} 
 	
 	h2 {
@@ -87,20 +87,32 @@ const Card = styled.a`
     }
 `;
 
-const GameList = () => (
-	<CardContainer>
-		<Card href="resistance">
-			<img src={fist} alt="resistance logo" />
-			<div>
-				<h2>Resistance</h2>
-				<p>
-					Successfully complete your missions
-					while spies try to sabotage them.
-				</p>
-				<Players players={'5-10'} />
-			</div>
-		</Card>
-	</CardContainer>
-);
+const GameList = () => {
+	const [modalOpen, setModalOpen] = useState<boolean>(false);
+	const openModal = (): void => setModalOpen(true);
+	const closeModal = (): void => {
+		setModalOpen(false);
+	};
+
+	return (
+		<>
+			<CardContainer>
+				<Card onClick={openModal}>
+					<img src={fist} alt="resistance logo" />
+					<div>
+						<h2>Resistance</h2>
+						<p>
+							Successfully complete your missions
+							while spies try to sabotage them.
+						</p>
+						<Players players={'5-10'} />
+					</div>
+				</Card>
+			</CardContainer>
+			<Description modalOpen={modalOpen} onRequestClose={closeModal} />
+		</>
+	);
+
+};
 
 export default Main;

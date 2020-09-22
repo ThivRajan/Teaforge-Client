@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
 		max-width: 450px; 
 		margin: 0 auto;
 		text-align: center;
-		font-family: Kreon, serif;
+		font-family: Signika, sans-serif;
 	}
 
 	i, p, u {
