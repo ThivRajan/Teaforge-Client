@@ -6,15 +6,15 @@ const buttonStyle = css`
 	margin-right: 0.5rem;
 	margin-left: 0.5rem;
 
-	padding-bottom: 5px;
-	padding-top 7px;
+	/* top right bottom left*/
+	padding: 7px 5px 5px 5px;
 
 	border-radius: 5px;
 
 	width: 40%;
 	transition: background 300ms;
 
-	font-size: 1rem;
+	font-size: 1.1rem;
 
 	:focus {
 		outline: none;

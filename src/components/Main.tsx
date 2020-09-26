@@ -8,11 +8,15 @@ import Players from '../styles/Players';
 import { OutlineButton } from '../styles/Button';
 import Description from './Description';
 
+const SubHeader = styled.p`
+	font-size: 23px;
+`;
+
 const Main = () => {
 	return (
 		<>
 			<h1>Teaforge</h1>
-			<p>Play classic games of deceipt online</p>
+			<SubHeader>Play classic games of deceipt online</SubHeader>
 			<Link to="/join">
 				<OutlineButton>Join Game</OutlineButton>
 			</Link>

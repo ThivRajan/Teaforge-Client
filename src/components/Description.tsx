@@ -95,10 +95,10 @@ const GameDescription: React.FC<{ modalOpen: boolean; closeModal: Function }> =
 				<i>Your goal is to either succeed or sabotage the mission</i>
 				<div>
 					<Link to="/join">
-						<FilledButton color={blue}>Join Room</FilledButton>
+						<FilledButton color={blue}>Join Game</FilledButton>
 					</Link>
 					<Link to="/create">
-						<FilledButton>Create Room</FilledButton>
+						<FilledButton>Create Game</FilledButton>
 					</Link>
 				</div>
 

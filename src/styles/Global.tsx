@@ -14,6 +14,16 @@ const GlobalStyle = createGlobalStyle`
 	i, p, u {
 		font-family: Signika, sans-serif;
 		font-weight: 300;
+		font-size: 20px;
+	}
+
+	b {
+		font-family: Signika, sans-serif;
+		font-size: 20px;
+	}
+
+	h1 {
+		font-size: 45px;
 	}
 
 	h1, h2, h3, h4 {
