@@ -128,7 +128,7 @@ const GameDescription: React.FC<{ modalOpen: boolean; closeModal: Function }> =
 				<p>
 					2. Once the leader has selected members, everyone will vote on
 					if they approve the team. If there is a majority vote of approval,
-					then you'll move on to the next phase. If there isn't a
+					then you&apos;ll move on to the next phase. If there isn&apos;t a
 					majority vote, then there will be a different leader and the game
 					goes back to the team creation phase.
 				</p>
@@ -136,7 +136,7 @@ const GameDescription: React.FC<{ modalOpen: boolean; closeModal: Function }> =
 					3. Once the team has gotten majority approval, you will move to
 					the mission phase. Everyone on the team will get an option to either
 					succeed or fail the mission. If there is even a single person who selects
-					"fail", then the entire mission is considered to be a Fail. Once all
+					&quot;fail&quot;, then the entire mission is considered to be a Fail. Once all
 					the team members have selected their option, you will be shown the mission
 					result (Success or Fail).
 				</p>
