@@ -14,7 +14,7 @@ const buttonStyle = css`
 	width: 40%;
 	transition: background 300ms;
 
-	font-size: 1.1rem;
+	font-size: 1.4rem;
 
 	:focus {
 		outline: none;
