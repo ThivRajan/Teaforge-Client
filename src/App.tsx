@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Main from './components/Main';
+import Home from './components/Home';
 import JoinForm from './components/JoinForm';
 import CreateForm from './components/CreateForm';
 import RoomLobby from './components/RoomLobby';
@@ -26,7 +26,7 @@ const App = () => {
 				</Route>
 
 				<Route path="/">
-					<Main />
+					<Home />
 				</Route>
 			</Switch>
 		</>

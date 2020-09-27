@@ -1,26 +1,32 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import fist from '../assets/fist.png';
-
-import Players from '../styles/Players';
-import { OutlineButton } from '../styles/Button';
 import Description from './Description';
+import Players from '../../styles/Players';
 
-const SubHeader = styled.p`
-	font-size: 23px;
-`;
+import fist from '../../assets/fist.png';
 
-const Main = () => {
+const Games = () => {
+	const [modalOpen, setModalOpen] = useState<boolean>(false);
+	const openModal = (): void => setModalOpen(true);
+	const closeModal = (): void => setModalOpen(false);
+
 	return (
 		<>
-			<h1>Teaforge</h1>
-			<SubHeader>Play classic games of deceipt online</SubHeader>
-			<Link to="/join">
-				<OutlineButton>Join Game</OutlineButton>
-			</Link>
-			<GameList />
+			<CardContainer>
+				<Card onClick={openModal}>
+					<img src={fist} alt="resistance logo" />
+					<div>
+						<h2>Resistance</h2>
+						<p>
+							Successfully complete your missions
+							while spies try to sabotage them.
+						</p>
+						<Players players={'5-10 players'} />
+					</div>
+				</Card>
+			</CardContainer>
+			<Description modalOpen={modalOpen} closeModal={closeModal} />
 		</>
 	);
 
@@ -88,30 +94,5 @@ const Card = styled.div`
     }
 `;
 
-const GameList = () => {
-	const [modalOpen, setModalOpen] = useState<boolean>(false);
-	const openModal = (): void => setModalOpen(true);
-	const closeModal = (): void => setModalOpen(false);
+export default Games;
 
-	return (
-		<>
-			<CardContainer>
-				<Card onClick={openModal}>
-					<img src={fist} alt="resistance logo" />
-					<div>
-						<h2>Resistance</h2>
-						<p>
-							Successfully complete your missions
-							while spies try to sabotage them.
-						</p>
-						<Players players={'5-10 players'} />
-					</div>
-				</Card>
-			</CardContainer>
-			<Description modalOpen={modalOpen} closeModal={closeModal} />
-		</>
-	);
-
-};
-
-export default Main;

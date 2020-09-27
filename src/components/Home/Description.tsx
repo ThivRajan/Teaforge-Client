@@ -3,79 +3,13 @@ import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
-import Players from '../styles/Players';
-import { FilledButton } from '../styles/Button';
-import { blue } from '../styles/Global';
+
+import Players from '../../styles/Players';
+import { FilledButton } from '../../styles/Button';
+import { blue } from '../../styles/Global';
+
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-const Container = styled(ReactModal)`
-	background: #4a4a4a;
-	color: white;
-	text-align: left;
-	border-radius: 3px;
-	overflow-y: auto;
-
-	width: 800px;
-	max-width: 80%;
-
-	height: max-content;
-	max-height: 75%;
-	
-	position: absolute;
-	top: 0; bottom: 0; right: 0; left: 0;
-	margin: auto;
-
-	padding: 20px;
-
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-
-	h1 {
-		margin-top: 10px;
-	}
-
-	div button {
-		max-width: 200px;
-	}
-
-	div {
-		margin-top: 15px;
-	}
-
-	b {
-		text-align: left;
-	}
-
-	u {
-		font-size: 27px;
-		text-align: left;
-	}
-
-	p {
-		margin-top: 0;
-		text-align: left;
-	}
-
-	span {
-		width: max-content;
-		margin-bottom: 10px;
-	}
-
-	:focus {
-		outline: none;
-	}
-`;
-
-const CloseIcon = styled(FontAwesomeIcon)`
-	font-size: 25px;
-
-	:hover {
-		filter: brightness(80%);
-		cursor: pointer;
-	}
-`;
 
 const GameDescription: React.FC<{ modalOpen: boolean; closeModal: Function }> =
 	({ modalOpen, closeModal }) => {
@@ -155,5 +89,74 @@ const GameDescription: React.FC<{ modalOpen: boolean; closeModal: Function }> =
 			</Container>
 		);
 	};
+
+
+const Container = styled(ReactModal)`
+	background: #4a4a4a;
+	color: white;
+	text-align: left;
+	border-radius: 3px;
+	overflow-y: auto;
+
+	width: 800px;
+	max-width: 80%;
+
+	height: max-content;
+	max-height: 75%;
+	
+	position: absolute;
+	top: 0; bottom: 0; right: 0; left: 0;
+	margin: auto;
+
+	padding: 20px;
+
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+
+	h1 {
+		margin-top: 10px;
+	}
+
+	div button {
+		max-width: 200px;
+	}
+
+	div {
+		margin-top: 15px;
+	}
+
+	b {
+		text-align: left;
+	}
+
+	u {
+		font-size: 27px;
+		text-align: left;
+	}
+
+	p {
+		margin-top: 0;
+		text-align: left;
+	}
+
+	span {
+		width: max-content;
+		margin-bottom: 10px;
+	}
+
+	:focus {
+		outline: none;
+	}
+`;
+
+const CloseIcon = styled(FontAwesomeIcon)`
+	font-size: 25px;
+
+	:hover {
+		filter: brightness(80%);
+		cursor: pointer;
+	}
+`;
 
 export default GameDescription;
