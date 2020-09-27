@@ -9,6 +9,9 @@ const GlobalStyle = createGlobalStyle`
 		margin: 0 auto;
 		text-align: center;
 		font-family: Signika, sans-serif;
+
+		background: darkgrey;
+		color: white;
 	}
 
 	i, p, u {

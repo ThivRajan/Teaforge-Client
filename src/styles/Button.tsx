@@ -10,11 +10,10 @@ const buttonStyle = css`
 	padding: 7px 5px 5px 5px;
 
 	border-radius: 5px;
-
 	width: 40%;
-	transition: background 300ms;
-
 	font-size: 1.4rem;
+
+	transition: background 300ms;
 
 	:focus {
 		outline: none;
@@ -44,7 +43,6 @@ export const FilledButton = styled.button`
 	border: ${props => props.color || red};
 
 	:hover {
-		background: ${props => props.color || red};
 		cursor: pointer;
 		filter: brightness(80%);
 	}

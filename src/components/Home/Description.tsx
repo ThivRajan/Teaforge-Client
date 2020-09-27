@@ -60,8 +60,8 @@ const GameDescription: React.FC<{ modalOpen: boolean; closeModal: Function }> =
 					a different person until everyone has been the leader).
 				</p>
 				<p>
-					2. Once the leader has selected members, everyone will vote on
-					if they approve the team. If there is a majority vote of approval,
+					2. Once the leader has selected members, everyone will vote for
+					approving the team or not. If there is a majority vote of approval,
 					then you&apos;ll move on to the next phase. If there isn&apos;t a
 					majority vote, then there will be a different leader and the game
 					goes back to the team creation phase.
@@ -89,7 +89,6 @@ const GameDescription: React.FC<{ modalOpen: boolean; closeModal: Function }> =
 			</Container>
 		);
 	};
-
 
 const Container = styled(ReactModal)`
 	background: #4a4a4a;
