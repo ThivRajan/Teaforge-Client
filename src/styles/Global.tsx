@@ -10,28 +10,30 @@ const GlobalStyle = createGlobalStyle`
 		text-align: center;
 		font-family: Signika, sans-serif;
 
-		background: darkgrey;
-		color: white;
+		//@ts-ignore
+		background: ${props => props.theme.darkMode ? 'darkgrey' : 'white'};
+		//@ts-ignore
+		color: ${props => props.theme.darkMode ? 'white' : 'darkgrey'};
 	}
 
-	i, p, u {
-		font-family: Signika, sans-serif;
-		font-weight: 300;
-		font-size: 20px;
-	}
+i, p, u {
+	font - family: Signika, sans - serif;
+	font - weight: 300;
+	font - size: 20px;
+}
 
-	b {
-		font-family: Signika, sans-serif;
-		font-size: 20px;
-	}
+b {
+	font - family: Signika, sans - serif;
+	font - size: 20px;
+}
 
-	h1 {
-		font-size: 45px;
-	}
+h1 {
+	font - size: 45px;
+}
 
-	h1, h2, h3, h4 {
-		font-family: Kreon, serif;
-	}
+h1, h2, h3, h4 {
+	font - family: Kreon, serif;
+}
 `;
 
 export default GlobalStyle;

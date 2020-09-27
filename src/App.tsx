@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
-import DarkMode from './components/Header';
+import DarkMode from './components/DarkMode';
 import Home from './components/Home';
 import JoinForm from './components/JoinForm';
 import CreateForm from './components/CreateForm';
@@ -10,9 +11,18 @@ import RoomLobby from './components/RoomLobby';
 import GlobalStyle from './styles/Global';
 
 const App = () => {
+	const [darkMode, setdarkMode] = useState(false);
+
+	const toggleTheme = (currTheme: boolean) =>
+		setdarkMode(!currTheme);
+
+	// useEffect(() => {
+	// 	console.log('Darkmode?', darkMode);
+	// });
+
 	return (
-		<>
-			<DarkMode />
+		<ThemeProvider theme={{ darkMode }}>
+			<DarkMode toggleTheme={toggleTheme} theme={darkMode} />
 			<GlobalStyle />
 			<Switch>
 				<Route path="/lobby">
@@ -31,7 +41,7 @@ const App = () => {
 					<Home />
 				</Route>
 			</Switch>
-		</>
+		</ThemeProvider>
 	);
 };
 

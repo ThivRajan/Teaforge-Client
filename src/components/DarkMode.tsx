@@ -1,28 +1,50 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { faSun } from '@fortawesome/free-solid-svg-icons';
+import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-const DarkMode = () => {
-	return (
-		<div>
-			<ThemeButton>
-				<FontAwesomeIcon icon={faSun} />
-			</ThemeButton>
-		</div>
+const DarkMode: React.FC<{ toggleTheme: Function; theme: boolean }>
+	= ({ toggleTheme, theme }) => (
+		<Container>
+			<ToggleButton onClick={() => toggleTheme(theme)}>
+				<FontAwesomeIcon icon={faMoon} />
+			</ToggleButton>
+		</Container>
 	);
-};
 
-const ThemeButton = styled.button`
-	border-radius: 3px;
+const Container = styled.div`
 	position: absolute;
-	top: 45px;
-	right: 350px;
-	font-size: 20px;
-	background: none;
+	top: 0;
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+	max-width: 450px;
+	margin-right: 15px;
+
+	button {
+		grid-column: 10;
+	}
+`;
+
+const ToggleButton = styled.button`
+	padding: 15px;
+	margin-top: 30px;
+
+	font-size: 25px;
+	height: max-content;
+	width: max-content;
+
 	border: none;
+	border-radius: 5px;
+	background: none;
+	outline: none;
+
+	transition: background 200ms;
+
+	:hover {
+		background: grey;
+		cursor: pointer;
+	}
 `;
 
 export default DarkMode;
