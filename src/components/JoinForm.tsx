@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Header from './Header';
 import Form from '../styles/Form';
 import { FilledButton } from '../styles/Button';
 import { blue } from '../styles/Global';
@@ -9,7 +8,7 @@ import { blue } from '../styles/Global';
 const JoinForm = () => {
 	return (
 		<>
-			<Header title={'Join Room'} />
+			<h1>Join Room</h1>
 			<Form>
 				<input placeholder="Name"></input>
 				<br />

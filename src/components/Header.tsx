@@ -1,38 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { faSun } from '@fortawesome/free-solid-svg-icons';
+import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Header: React.FC<{ title: string }> = ({ title }) => (
-	<HeadContainer>
-		<h1>{title}</h1>
-		<ThemeButton>
-			<FontAwesomeIcon icon={faSun} />
-		</ThemeButton>
-	</HeadContainer>
-
+const DarkMode = () => (
+	<Container>
+		<ToggleButton>
+			<FontAwesomeIcon icon={faMoon} />
+		</ToggleButton>
+	</Container>
 );
 
-const HeadContainer = styled.div`
+const Container = styled.div`
+	position: absolute;
+	top: 0;
 	display: grid;
-	grid-template-columns: 1fr 1fr 5fr 1fr 1fr;
-
-	h1 {
-		grid-column: 3;
-	}
+	grid-template-columns: repeat(10, 1fr);
+	max-width: 450px;
+	margin-right: 15px;
 
 	button {
-		grid-column: 5;
+		grid-column: 10;
 	}
-
 `;
 
-const ThemeButton = styled.button`
-	padding: 10px;
-	margin-top: 35px;
+const ToggleButton = styled.button`
+	padding: 15px;
+	margin-top: 30px;
 
-	font-size: 30px;
+	font-size: 25px;
 	height: max-content;
 	width: max-content;
 
@@ -49,4 +46,4 @@ const ThemeButton = styled.button`
 	}
 `;
 
-export default Header;
+export default DarkMode;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import DarkMode from './components/Header';
 import Home from './components/Home';
 import JoinForm from './components/JoinForm';
 import CreateForm from './components/CreateForm';
@@ -11,6 +12,7 @@ import GlobalStyle from './styles/Global';
 const App = () => {
 	return (
 		<>
+			<DarkMode />
 			<GlobalStyle />
 			<Switch>
 				<Route path="/lobby">
