@@ -3,16 +3,17 @@ import { createGlobalStyle } from 'styled-components';
 export const blue = '#277ee3';
 export const red = '#fc3030';
 
-const GlobalStyle = createGlobalStyle`
+type ThemeProps = { darkMode: boolean };
+type GlobalStyleProps = { theme: ThemeProps };
+
+const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 	body {
 		max-width: 450px; 
 		margin: 0 auto;
 		text-align: center;
 		font-family: Signika, sans-serif;
 
-		//@ts-ignore
 		background: ${props => props.theme.darkMode ? 'darkgrey' : 'white'};
-		//@ts-ignore
 		color: ${props => props.theme.darkMode ? 'white' : 'black'};
 	}
 
