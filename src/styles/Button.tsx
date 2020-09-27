@@ -13,7 +13,7 @@ const buttonStyle = css`
 	width: 40%;
 	font-size: 1.4rem;
 
-	transition: background 300ms;
+	transition: background 100ms;
 
 	:focus {
 		outline: none;
@@ -23,7 +23,7 @@ const buttonStyle = css`
 export const OutlineButton = styled.button`
 	${buttonStyle}
 
-	background: white;
+	background: ${props => props.theme.darkMode ? 'darkgrey' : 'white'};
 	color: ${props => props.color || red};
 	border: 2px solid ${props => props.color || red}; 
 

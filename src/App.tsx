@@ -16,13 +16,9 @@ const App = () => {
 	const toggleTheme = (currTheme: boolean) =>
 		setdarkMode(!currTheme);
 
-	// useEffect(() => {
-	// 	console.log('Darkmode?', darkMode);
-	// });
-
 	return (
 		<ThemeProvider theme={{ darkMode }}>
-			<DarkMode toggleTheme={toggleTheme} theme={darkMode} />
+			<DarkMode toggleTheme={toggleTheme} darkMode={darkMode} />
 			<GlobalStyle />
 			<Switch>
 				<Route path="/lobby">

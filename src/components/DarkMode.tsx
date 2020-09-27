@@ -1,17 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const DarkMode: React.FC<{ toggleTheme: Function; theme: boolean }>
-	= ({ toggleTheme, theme }) => (
-		<Container>
-			<ToggleButton onClick={() => toggleTheme(theme)}>
-				<FontAwesomeIcon icon={faMoon} />
-			</ToggleButton>
-		</Container>
-	);
+const DarkMode: React.FC<{ toggleTheme: Function; darkMode: boolean }>
+	= ({ toggleTheme, darkMode }) => {
+		const icon = darkMode ? faSun : faMoon;
+		return (
+			<Container>
+				<ToggleButton onClick={() => toggleTheme(darkMode)}>
+					<FontAwesomeIcon icon={icon} />
+				</ToggleButton>
+			</Container>
+		);
+	};
 
 const Container = styled.div`
 	position: absolute;
@@ -40,6 +43,8 @@ const ToggleButton = styled.button`
 	outline: none;
 
 	transition: background 200ms;
+
+	color: ${props => props.theme.darkMode ? 'white' : 'black'};
 
 	:hover {
 		background: grey;
