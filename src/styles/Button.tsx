@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { red } from './Global';
+import { colors } from './Global';
 
 const buttonStyle = css`
 	margin-bottom: 1.2rem;
@@ -20,27 +20,27 @@ const buttonStyle = css`
 	}
 `;
 
-export const OutlineButton = styled.button`
+const Outlined = styled.button`
 	${buttonStyle}
 
-	background: ${props => props.theme.darkMode ? 'darkgrey' : 'white'};
-	color: ${props => props.color || red};
-	border: 2px solid ${props => props.color || red}; 
+	background: ${props => props.theme.darkMode ? colors.bg : 'white'};
+	color: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
+	border: 2px solid ${props => props.theme.darkMode ? colors.lightRed : colors.red};
 
 	:hover {
-		background: ${props => props.color || red};
+		background: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
 		color: white;
 		cursor: pointer;
 	}
 `;
 
-export const FilledButton = styled.button`
+const Filled = styled.button`
 	${buttonStyle}
 
-	background: ${props => props.color || red};
+	background: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
 	color: white;
 
-	border: ${props => props.color || red};
+	border: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
 
 	:hover {
 		cursor: pointer;
@@ -48,4 +48,4 @@ export const FilledButton = styled.button`
 	}
 `;
 
-export default { OutlineButton, FilledButton };
+export default { Outlined, Filled };

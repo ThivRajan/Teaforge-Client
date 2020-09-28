@@ -47,7 +47,7 @@ const ToggleButton = styled.button`
 	color: ${props => props.theme.darkMode ? 'white' : 'black'};
 
 	:hover {
-		background: grey;
+		background: ${props => props.theme.darkMode ? 'grey' : 'lightgrey'};;
 		cursor: pointer;
 	}
 `;

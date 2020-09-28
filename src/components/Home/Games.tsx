@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import Description from './Description';
+import Description from './GameInfo';
 import Players from '../../styles/Players';
-import { Card, CardContainer } from '../../styles/Card';
+import { GameCard, GamesContainer } from '../../styles/GameCard';
 
 import fist from '../../assets/fist.png';
 
@@ -13,8 +13,8 @@ const Games = () => {
 
 	return (
 		<>
-			<CardContainer>
-				<Card onClick={openModal}>
+			<GamesContainer>
+				<GameCard onClick={openModal}>
 					<img src={fist} alt="resistance logo" />
 					<div>
 						<h2>Resistance</h2>
@@ -24,8 +24,8 @@ const Games = () => {
 						</p>
 						<Players players={'5-10 players'} />
 					</div>
-				</Card>
-			</CardContainer>
+				</GameCard>
+			</GamesContainer>
 			<Description modalOpen={modalOpen} closeModal={closeModal} />
 		</>
 	);

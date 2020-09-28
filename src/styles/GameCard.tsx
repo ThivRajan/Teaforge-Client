@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
-export const CardContainer = styled.div`
+import { colors } from './Global';
+
+export const GamesContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin: auto;
 `;
 
-export const Card = styled.div`
+export const GameCard = styled.div`
 	color: white;
-	background-color: #4a4a4a;
+	background: ${props => props.theme.darkMode ? colors.fg : colors.bg};
+
 	
 	border-radius: 3px;
 	margin: 15px;
@@ -21,7 +24,8 @@ export const Card = styled.div`
 	transition: box-shadow 200ms;
 	
 	:hover {
-		box-shadow: 0px 5px 13px 1px #707070;
+		box-shadow: 0px 5px 13px 1px 
+			${props => props.theme.darkMode ? '#141414' : '#a3a3a3'};
 		cursor: pointer;
 	} 
 	
@@ -30,7 +34,6 @@ export const Card = styled.div`
 		font-size: 30px;
 		font-weight: bold;
 		font-family: Kreon, serif;
-		color: white;
     }
 
     p {

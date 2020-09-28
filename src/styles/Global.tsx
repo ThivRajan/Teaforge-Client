@@ -1,10 +1,15 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const blue = '#277ee3';
-export const red = '#fc3030';
+export const colors = {
+	red: '#ff4545',
+	lightRed: '#c97575',
+	bg: '#292929',
+	fg: '#454545'
+};
 
 type ThemeProps = { darkMode: boolean };
 type GlobalStyleProps = { theme: ThemeProps };
+
 
 const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 	body {
@@ -13,7 +18,7 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 		text-align: center;
 		font-family: Signika, sans-serif;
 
-		background: ${props => props.theme.darkMode ? 'darkgrey' : 'white'};
+		background: ${props => props.theme.darkMode ? colors.bg : 'white'};
 		color: ${props => props.theme.darkMode ? 'white' : 'black'};
 	}
 

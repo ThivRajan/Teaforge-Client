@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Form from '../styles/Form';
-import { FilledButton } from '../styles/Button';
-import { blue } from '../styles/Global';
+import Button from '../styles/Button';
 
 const CreateForm = () => {
 	return (
@@ -13,10 +12,10 @@ const CreateForm = () => {
 				<input placeholder="Name"></input>
 				<br />
 				<Link to="/lobby">
-					<FilledButton color={blue}>Join</FilledButton>
+					<Button.Filled>Join</Button.Filled>
 				</Link>
 				<Link to="/">
-					<FilledButton>Cancel</FilledButton>
+					<Button.Outlined>Cancel</Button.Outlined>
 				</Link>
 			</Form>
 		</>
