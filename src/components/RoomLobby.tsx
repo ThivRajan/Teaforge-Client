@@ -1,21 +1,31 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import { Link } from 'react-router-dom';
+import Button from '../styles/Button';
 
 const RoomLobby = () => {
 	return (
 		<div>
-			<h2>Key: XYZW</h2>
+			<h1>Lobby</h1>
 			<p>Need 3 more players to start</p>
-			<ol>
+			<PlayerList>
 				<li>Joe</li>
 				<li>Bob</li>
-			</ol>
+			</PlayerList>
 			<Link to="/">
-				<button>Leave</button>
+				<Button.Outlined>Leave</Button.Outlined>
 			</Link>
-			<button>Start</button>
+			<Button.Filled>Start</Button.Filled>
 		</div>
 	);
 };
+
+const PlayerList = styled.ol`
+	list-style: decimal inside;
+	margin-bottom: 20px;
+	font-size: 20px;
+	font-weight: 300;
+`;
 
 export default RoomLobby;

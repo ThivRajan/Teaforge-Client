@@ -17,8 +17,6 @@ export const GameCard = styled.div`
 	margin: 15px;
 	margin-top: 0;
 
-	text-decoration: none;
-
 	display: grid;
 	grid-template-columns: 4fr 11fr;
 	transition: box-shadow 200ms;
