@@ -39,6 +39,7 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 
 	h1, h2, h3, h4 {
 		font-family: Kreon, serif;
+		text-transform: capitalize;
 	}
 `;
 

@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { ThemeProvider } from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyle from './styles/Global';
 
 import DarkMode from './components/DarkMode';
 import Home from './components/Home';
-import JoinForm from './components/JoinForm';
-import CreateForm from './components/CreateForm';
+import JoinForm from './components/JoinRoom';
+import CreateForm from './components/CreateRoom';
 import RoomLobby from './components/RoomLobby';
 
-import GlobalStyle from './styles/Global';
+import { Games } from './types';
 
 const App = () => {
 	const [darkMode, setdarkMode] = useState(false);
 
-	const toggleTheme = (currTheme: boolean) =>
-		setdarkMode(!currTheme);
+	const toggleTheme = (currTheme: boolean) => setdarkMode(!currTheme);
 
 	return (
 		<ThemeProvider theme={{ darkMode }}>
@@ -29,8 +29,8 @@ const App = () => {
 					<JoinForm />
 				</Route>
 
-				<Route path="/create">
-					<CreateForm />
+				<Route path={`/create/${Games.Resistance}`}>
+					<CreateForm game={Games.Resistance} />
 				</Route>
 
 				<Route path="/">

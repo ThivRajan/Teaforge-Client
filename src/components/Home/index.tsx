@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Button from '../../styles/Button';
-import Games from './Games';
+import GameList from './GameList';
 
 const SubHeader = styled.p`
 	font-size: 23px;
@@ -18,7 +18,7 @@ const Main = () => {
 			<Link to="/join">
 				<Button.Outlined>Join Game</Button.Outlined>
 			</Link>
-			<Games />
+			<GameList />
 		</>
 	);
 };

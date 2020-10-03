@@ -9,8 +9,10 @@ import Button from '../../styles/Button';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const GameDescription: React.FC<{ modalOpen: boolean; closeModal: Function }> =
-	({ modalOpen, closeModal }) => {
+import { Games } from '../../types';
+
+const GameDescription: React.FC<{ game: Games; modalOpen: boolean; closeModal: Function }> =
+	({ game, modalOpen, closeModal }) => {
 
 		return (
 			<Container
@@ -29,7 +31,7 @@ const GameDescription: React.FC<{ modalOpen: boolean; closeModal: Function }> =
 					<Link to="/join">
 						<Button.Filled>Join</Button.Filled>
 					</Link>
-					<Link to="/create">
+					<Link to={`/create/${game}`}>
 						<Button.Filled>Create</Button.Filled>
 					</Link>
 				</div>
