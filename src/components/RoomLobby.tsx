@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
@@ -10,11 +10,15 @@ const RoomLobby = () => {
 	const [{ socket, key },] = useStateValue();
 	const [players, setPlayers] = useState<string[]>([]);
 
-	if (!socket) return (<>...Loading</>);
+	useEffect(() => {
+		if (socket) {
+			socket.emit('joinRoom', key);
+			socket.on('players', (playerNames: string[]) => {
+				setPlayers(playerNames);
+			});
+		}
+	}, [players]);
 
-	socket.emit('joinRoom', key);
-	socket.on('players', (data: string[]) => setPlayers(data));
-	console.log(players);
 
 	return (
 		<div>
