@@ -2,13 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { reducer, StateProvider } from './state';
 
 ReactDOM.render(
-	<Router>
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>
-	</Router>,
+	<StateProvider reducer={reducer}>
+		<Router>
+			<React.StrictMode>
+				<App />
+			</React.StrictMode>
+		</Router>
+	</StateProvider>
+	,
 	document.getElementById('root')
 );
 

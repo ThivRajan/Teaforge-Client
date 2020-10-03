@@ -21,7 +21,7 @@ const App = () => {
 			<DarkMode toggleTheme={toggleTheme} darkMode={darkMode} />
 			<GlobalStyle />
 			<Switch>
-				<Route path="/lobby">
+				<Route path={`/${Games.Resistance}/key`}>
 					<RoomLobby />
 				</Route>
 
