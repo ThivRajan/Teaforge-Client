@@ -10,9 +10,9 @@ import { useStateValue } from '../state';
 import { setSocket, setKey } from '../state/reducer';
 
 const CreateForm: React.FC<{ game: Games }> = ({ game }) => {
-	const history = useHistory();
-	const [, dispatch] = useStateValue();
 	const [name, setName] = useState('');
+	const [, dispatch] = useStateValue();
+	const history = useHistory();
 
 	const handleCreate = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
@@ -31,7 +31,8 @@ const CreateForm: React.FC<{ game: Games }> = ({ game }) => {
 			<h1>Create Room</h1>
 			<Form>
 				<input placeholder="Name"
-					value={name} onChange={event => setName(event.target.value)}>
+					value={name}
+					onChange={event => setName(event.target.value)}>
 				</input>
 				<br />
 				<Button.Filled onClick={handleCreate}>Create</Button.Filled>

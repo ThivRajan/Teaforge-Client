@@ -12,34 +12,40 @@ const RoomLobby = () => {
 
 	useEffect(() => {
 		if (socket) {
-			socket.emit('joinRoom', key);
+			socket.emit('getPlayers', key);
 			socket.on('players', (playerNames: string[]) => {
 				setPlayers(playerNames);
 			});
 		}
-	}, [players]);
+	}, [players, socket, key]);
 
 
 	return (
-		<div>
-			<h1>Room Lobby</h1>
+		<Lobby>
+			<h1>{`Resistance: ${key}`}</h1>
 			<p>Need 3 more players to start</p>
-			<PlayerList>
+			<ol>
 				{players.map(p => <li key={p}>{p}</li>)}
-			</PlayerList>
+			</ol>
 			<Link to="/">
 				<Button.Outlined>Leave</Button.Outlined>
 			</Link>
 			<Button.Filled>Start</Button.Filled>
-		</div>
+		</Lobby>
 	);
 };
 
-const PlayerList = styled.ol`
-	list-style: decimal inside;
-	margin-bottom: 20px;
-	font-size: 20px;
-	font-weight: 300;
+const Lobby = styled.div`
+	h1 {
+		text-transform: none;
+	}
+
+	ol {
+		list-style: decimal inside;
+		margin-bottom: 20px;
+		font-size: 20px;
+		font-weight: 300;
+	}
 `;
 
 export default RoomLobby;
