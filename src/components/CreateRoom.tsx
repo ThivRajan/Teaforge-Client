@@ -10,6 +10,7 @@ import { SERVER_URI } from '../constants';
 import { useStateValue } from '../state';
 import { setSocket, setGame, setKey } from '../state/reducer';
 
+//TODO: form validation
 const CreateForm: React.FC<{ game: Games }> = ({ game }) => {
 	const [name, setName] = useState('');
 	const [, dispatch] = useStateValue();

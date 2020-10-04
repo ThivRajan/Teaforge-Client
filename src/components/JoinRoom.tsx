@@ -10,7 +10,7 @@ import { SERVER_URI } from '../constants';
 import { useStateValue } from '../state';
 import { setSocket, setGame, setKey } from '../state/reducer';
 
-//TODO: use variable for socket link
+//TODO: form validation
 const JoinForm = () => {
 	const [name, setName] = useState('');
 	const [key, setRoomKey] = useState('');
