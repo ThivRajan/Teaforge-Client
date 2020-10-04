@@ -7,7 +7,7 @@ import Button from '../styles/Button';
 
 import { Games } from '../types';
 import { useStateValue } from '../state';
-import { setSocket, setKey } from '../state/reducer';
+import { setSocket, setGame, setKey } from '../state/reducer';
 
 const JoinForm = () => {
 	const [name, setName] = useState('');
@@ -18,14 +18,15 @@ const JoinForm = () => {
 	//TODO: fix join structure to not use 'Games.Resistance' as part of socket
 	const handleJoin = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
-		const socket = io.connect(`http://localhost:3001/${Games.Resistance}`);
-		dispatch(setSocket(socket));
+		const socket = io.connect('http://localhost:3001/');
 		socket.emit('join', name, key);
 
 		//TODO: change alert to on-page display
-		socket.on('invalidKey', () => alert('Invalid Key'));
+		socket.on('invalid', (error: string) => alert(error));
 
-		socket.on('validKey', () => {
+		socket.on('valid', () => {
+			dispatch(setSocket(socket));
+			dispatch(setGame(Games.Resistance)); //TODO: change this
 			dispatch(setKey(key));
 			history.push(`/${Games.Resistance}/${key}`);
 		});

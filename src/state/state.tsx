@@ -1,13 +1,15 @@
 import React, { createContext, useContext, useReducer } from 'react';
 
 import { Action } from './reducer';
+import { Games } from '../types';
 
 export type State = {
 	socket: SocketIOClient.Socket | null;
 	key: string | null;
+	game: Games | null;
 }
 
-const initialState: State = { socket: null, key: null };
+const initialState: State = { socket: null, key: null, game: null };
 
 export const StateContext = createContext<[State, React.Dispatch<Action>]>([
 	initialState,

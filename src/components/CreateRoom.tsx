@@ -7,7 +7,7 @@ import Button from '../styles/Button';
 
 import { Games } from '../types';
 import { useStateValue } from '../state';
-import { setSocket, setKey } from '../state/reducer';
+import { setSocket, setGame, setKey } from '../state/reducer';
 
 const CreateForm: React.FC<{ game: Games }> = ({ game }) => {
 	const [name, setName] = useState('');
@@ -16,11 +16,12 @@ const CreateForm: React.FC<{ game: Games }> = ({ game }) => {
 
 	const handleCreate = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
-		const socket = io.connect(`http://localhost:3001/${game}`);
-		dispatch(setSocket(socket));
-
+		const socket = io.connect('http://localhost:3001/');
 		socket.emit('create', name);
+
 		socket.on('roomKey', (key: string) => {
+			dispatch(setSocket(socket));
+			dispatch(setGame(game));
 			dispatch(setKey(key));
 			history.push(`/${game}/${key}`);
 		});
