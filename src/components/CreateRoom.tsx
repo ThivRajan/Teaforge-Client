@@ -9,6 +9,7 @@ import { Games } from '../types';
 import { useStateValue } from '../state';
 import { setSocket, setGame, setKey } from '../state/reducer';
 
+//TODO: use variable for socket link
 const CreateForm: React.FC<{ game: Games }> = ({ game }) => {
 	const [name, setName] = useState('');
 	const [, dispatch] = useStateValue();
@@ -17,7 +18,7 @@ const CreateForm: React.FC<{ game: Games }> = ({ game }) => {
 	const handleCreate = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
 		const socket = io.connect('http://localhost:3001/');
-		socket.emit('create', name);
+		socket.emit('create', name, game);
 
 		socket.on('roomKey', (key: string) => {
 			dispatch(setSocket(socket));

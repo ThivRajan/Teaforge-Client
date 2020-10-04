@@ -9,7 +9,8 @@ import { useStateValue } from '../state';
 //TODO: Make room be generic (provide game name & number of players as props)
 //TODO: Change view based on whether host or not
 //TODO: Consider saving key as part of local machine AND/OR state
-
+//TODO: fix '3 more players to start'
+//TODO: disconnect player on "Leave" button click
 const RoomLobby = () => {
 	const [{ socket, game, key },] = useStateValue();
 	const [players, setPlayers] = useState<string[]>([]);

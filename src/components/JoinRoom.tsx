@@ -9,13 +9,13 @@ import { Games } from '../types';
 import { useStateValue } from '../state';
 import { setSocket, setGame, setKey } from '../state/reducer';
 
+//TODO: use variable for socket link
 const JoinForm = () => {
 	const [name, setName] = useState('');
 	const [key, setRoomKey] = useState('');
 	const [, dispatch] = useStateValue();
 	const history = useHistory();
 
-	//TODO: fix join structure to not use 'Games.Resistance' as part of socket
 	const handleJoin = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
 		const socket = io.connect('http://localhost:3001/');
@@ -24,11 +24,11 @@ const JoinForm = () => {
 		//TODO: change alert to on-page display
 		socket.on('invalid', (error: string) => alert(error));
 
-		socket.on('valid', () => {
+		socket.on('valid', (game: Games) => {
 			dispatch(setSocket(socket));
-			dispatch(setGame(Games.Resistance)); //TODO: change this
+			dispatch(setGame(game));
 			dispatch(setKey(key));
-			history.push(`/${Games.Resistance}/${key}`);
+			history.push(`/${game}/${key}`);
 		});
 	};
 
