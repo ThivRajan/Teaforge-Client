@@ -8,12 +8,16 @@ import { useStateValue } from '../state';
 
 //TODO: Change view based on whether host or not
 //TODO: Make room be generic (provide game name & number of players as props)
+//TODO: Consider saving key as part of local machine AND/OR state
 const RoomLobby = () => {
 	const [{ socket, key },] = useStateValue();
 	const [players, setPlayers] = useState<string[]>([]);
 	const history = useHistory();
 
+	//TODO: Is this being rendered infinitely? (maybe because of history?)
 	useEffect(() => {
+		//TODO: Remove eventually
+		console.log('use effect block');
 		if (socket && key) {
 			socket.emit('getPlayers', key);
 			socket.on('players', (playerNames: string[]) => {
@@ -22,8 +26,7 @@ const RoomLobby = () => {
 		} else {
 			history.push('/join');
 		}
-	}, [players, socket, key, history]);
-
+	}, []);
 
 	return (
 		<Lobby>

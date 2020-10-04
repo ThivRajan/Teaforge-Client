@@ -22,9 +22,13 @@ const JoinForm = () => {
 		dispatch(setSocket(socket));
 		socket.emit('join', name, key);
 
-		//TODO: wait for server to inform client of valid key
-		dispatch(setKey(key));
-		history.push(`/${Games.Resistance}/${key}`);
+		//TODO: change alert to on-page display
+		socket.on('invalidKey', () => alert('Invalid Key'));
+
+		socket.on('validKey', () => {
+			dispatch(setKey(key));
+			history.push(`/${Games.Resistance}/${key}`);
+		});
 	};
 
 	return (
