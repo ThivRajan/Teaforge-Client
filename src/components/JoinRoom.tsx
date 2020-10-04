@@ -7,20 +7,23 @@ import Button from '../styles/Button';
 
 import { Games } from '../types';
 import { useStateValue } from '../state';
-import { setSocket } from '../state/reducer';
+import { setSocket, setKey } from '../state/reducer';
 
 const JoinForm = () => {
 	const [name, setName] = useState('');
-	const [key, setKey] = useState('');
+	const [key, setRoomKey] = useState('');
 	const [, dispatch] = useStateValue();
 	const history = useHistory();
 
+	//TODO: fix join structure to not use 'Games.Resistance' as part of socket
 	const handleJoin = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
 		const socket = io.connect(`http://localhost:3001/${Games.Resistance}`);
 		dispatch(setSocket(socket));
+		socket.emit('join', name, key);
 
-		socket.emit('join', name);
+		//TODO: wait for server to inform client of valid key
+		dispatch(setKey(key));
 		history.push(`/${Games.Resistance}/${key}`);
 	};
 
@@ -35,7 +38,7 @@ const JoinForm = () => {
 				<br />
 				<input placeholder="Room Key"
 					value={key}
-					onChange={event => setKey(event.target.value)}
+					onChange={event => setRoomKey(event.target.value)}
 				></input>
 				<br />
 				<Link to="/lobby">

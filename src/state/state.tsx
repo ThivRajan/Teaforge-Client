@@ -26,7 +26,7 @@ export const StateProvider: React.FC<StateProviderProps> = ({
 	const [state, dispatch] = useReducer(reducer, initialState);
 	return (
 		<StateContext.Provider value={[state, dispatch]}>
-			{ children}
+			{children}
 		</StateContext.Provider>
 	);
 };

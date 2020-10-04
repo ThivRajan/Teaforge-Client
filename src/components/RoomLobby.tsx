@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Button from '../styles/Button';
 
 import { useStateValue } from '../state';
 
+//TODO: Change view based on whether host or not
+//TODO: Make room be generic (provide game name & number of players as props)
 const RoomLobby = () => {
 	const [{ socket, key },] = useStateValue();
 	const [players, setPlayers] = useState<string[]>([]);
+	const history = useHistory();
 
 	useEffect(() => {
-		if (socket) {
+		if (socket && key) {
 			socket.emit('getPlayers', key);
 			socket.on('players', (playerNames: string[]) => {
 				setPlayers(playerNames);
 			});
+		} else {
+			history.push('/join');
 		}
-	}, [players, socket, key]);
+	}, [players, socket, key, history]);
 
 
 	return (
