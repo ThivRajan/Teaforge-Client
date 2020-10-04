@@ -6,6 +6,7 @@ import Form from '../styles/Form';
 import Button from '../styles/Button';
 
 import { Games } from '../types';
+import { SERVER_URI } from '../constants';
 import { useStateValue } from '../state';
 import { setSocket, setGame, setKey } from '../state/reducer';
 
@@ -18,7 +19,7 @@ const JoinForm = () => {
 
 	const handleJoin = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
-		const socket = io.connect('http://localhost:3001/');
+		const socket = io.connect(SERVER_URI);
 		socket.emit('join', name, key);
 
 		//TODO: change alert to on-page display
