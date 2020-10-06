@@ -9,15 +9,20 @@ import JoinForm from './components/JoinRoom';
 import CreateForm from './components/CreateRoom';
 import RoomLobby from './components/RoomLobby';
 
+import Message from './components/Message';
+
 import { Games } from './types';
+import { useStateValue } from './state';
 
 const App = () => {
 	const [darkMode, setdarkMode] = useState(false);
+	const [{ message },] = useStateValue();
 
 	const toggleTheme = (currTheme: boolean) => setdarkMode(!currTheme);
 
 	return (
 		<ThemeProvider theme={{ darkMode }}>
+			<Message message={message} />
 			<DarkMode toggleTheme={toggleTheme} darkMode={darkMode} />
 			<GlobalStyle />
 			<Switch>

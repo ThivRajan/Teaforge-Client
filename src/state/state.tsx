@@ -7,9 +7,11 @@ export type State = {
 	socket: SocketIOClient.Socket | null;
 	key: string | null;
 	game: { title: Games; playerCount: number } | null;
+	message: string;
 }
 
-const initialState: State = { socket: null, key: null, game: null };
+//TODO: consider setting key to '' instead of null
+const initialState: State = { socket: null, key: null, game: null, message: '' };
 
 export const StateContext = createContext<[State, React.Dispatch<Action>]>([
 	initialState,

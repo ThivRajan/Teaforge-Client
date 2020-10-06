@@ -25,6 +25,10 @@ export type Action =
 		payload: Games;
 	}
 	| {
+		type: 'SET_MESSAGE';
+		payload: string;
+	}
+	| {
 		type: 'CLEAR';
 	};
 
@@ -45,6 +49,14 @@ export const setGame = (payload: Games): Action => {
 export const setKey = (payload: string): Action => {
 	return {
 		type: 'SET_KEY',
+		payload
+	};
+};
+
+//TODO: make message disappear after 5 seconds
+export const setMessage = (payload: string): Action => {
+	return {
+		type: 'SET_MESSAGE',
 		payload
 	};
 };
@@ -72,11 +84,17 @@ export const reducer = (state: State, action: Action): State => {
 				...state,
 				key: action.payload
 			};
+		case 'SET_MESSAGE':
+			return {
+				...state,
+				message: action.payload
+			};
 		case 'CLEAR':
 			return {
 				socket: null,
 				game: null,
-				key: null
+				key: null,
+				message: ''
 			};
 		default:
 			return state;

@@ -8,29 +8,27 @@ import Button from '../styles/Button';
 import { Games } from '../types';
 import { SERVER_URI } from '../constants';
 import { useStateValue } from '../state';
-import { setSocket, setGame, setKey } from '../state/reducer';
+import { setSocket, setMessage, setGame, setKey } from '../state/reducer';
 
 //TODO: form validation
 const JoinForm = () => {
 	const [name, setName] = useState('');
 	const [key, setRoomKey] = useState('');
+
 	const [, dispatch] = useStateValue();
 	const history = useHistory();
 
 	const handleJoin = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
 		const socket = io.connect(SERVER_URI);
-		socket.emit('join', name, key);
-
-		//TODO: change alert to on-page display
-		socket.on('invalid', (error: string) => alert(error));
-
+		socket.on('invalid', (message: string) => dispatch(setMessage(message)));
 		socket.on('valid', (game: Games) => {
 			dispatch(setSocket(socket));
 			dispatch(setGame(game));
 			dispatch(setKey(key));
 			history.push(`/${game}/${key}`);
 		});
+		socket.emit('join', name, key);
 	};
 
 	return (

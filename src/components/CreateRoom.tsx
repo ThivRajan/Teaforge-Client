@@ -8,7 +8,7 @@ import Button from '../styles/Button';
 import { Games } from '../types';
 import { SERVER_URI } from '../constants';
 import { useStateValue } from '../state';
-import { setSocket, setGame, setKey } from '../state/reducer';
+import { setSocket, setMessage, setGame, setKey } from '../state/reducer';
 
 //TODO: form validation
 const CreateForm: React.FC<{ game: Games }> = ({ game }) => {
@@ -19,14 +19,14 @@ const CreateForm: React.FC<{ game: Games }> = ({ game }) => {
 	const handleCreate = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
 		const socket = io.connect(SERVER_URI);
-		socket.emit('create', name, game);
-
+		socket.on('invalid', (message: string) => dispatch(setMessage(message)));
 		socket.on('roomKey', (key: string) => {
 			dispatch(setSocket(socket));
 			dispatch(setGame(game));
 			dispatch(setKey(key));
 			history.push(`/${game}/${key}`);
 		});
+		socket.emit('create', name, game);
 	};
 
 	return (

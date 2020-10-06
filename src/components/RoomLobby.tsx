@@ -9,7 +9,6 @@ import { clearState } from '../state/reducer';
 
 //TODO: Change view based on whether host or not
 //TODO: Consider saving key as part of local machine AND/OR state
-
 const RoomLobby = () => {
 	const [{ socket, game, key }, dispatch] = useStateValue();
 	const [players, setPlayers] = useState<string[]>([]);
