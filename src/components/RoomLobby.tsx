@@ -5,14 +5,13 @@ import { Link, useHistory } from 'react-router-dom';
 import Button from '../styles/Button';
 
 import { useStateValue } from '../state';
+import { clearState } from '../state/reducer';
 
-//TODO: Make room be generic (provide game name & number of players as props)
 //TODO: Change view based on whether host or not
 //TODO: Consider saving key as part of local machine AND/OR state
-//TODO: fix '3 more players to start'
-//TODO: disconnect player on "Leave" button click
+
 const RoomLobby = () => {
-	const [{ socket, game, key },] = useStateValue();
+	const [{ socket, game, key }, dispatch] = useStateValue();
 	const [players, setPlayers] = useState<string[]>([]);
 	const history = useHistory();
 
@@ -25,17 +24,24 @@ const RoomLobby = () => {
 		} else {
 			history.push('/join');
 		}
-	}, [history, socket, key]);
+	}, [history, socket, key, game]);
+
+	const handleLeave = () => {
+		socket?.close();
+		dispatch(clearState());
+	};
+
+	if (!game || !key || !socket) return <>...Loading</>;
 
 	return (
 		<Lobby>
-			<h1>{`${game}: ${key}`}</h1>
-			<p>Need 3 more players to start</p>
+			<h1>{`${game.title}: ${key}`}</h1>
+			<p>Need {game.playerCount - players.length} more players to start</p>
 			<ol>
 				{players.map(p => <li key={p}>{p}</li>)}
 			</ol>
 			<Link to="/">
-				<Button.Outlined>Leave</Button.Outlined>
+				<Button.Outlined onClick={handleLeave}>Leave</Button.Outlined>
 			</Link>
 			<Button.Filled>Start</Button.Filled>
 		</Lobby>

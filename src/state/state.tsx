@@ -6,7 +6,7 @@ import { Games } from '../types';
 export type State = {
 	socket: SocketIOClient.Socket | null;
 	key: string | null;
-	game: Games | null;
+	game: { title: Games; playerCount: number } | null;
 }
 
 const initialState: State = { socket: null, key: null, game: null };
