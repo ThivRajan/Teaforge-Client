@@ -8,25 +8,20 @@ import Home from './components/Home';
 import JoinForm from './components/JoinRoom';
 import CreateForm from './components/CreateRoom';
 import RoomLobby from './components/RoomLobby';
+// import Message from './components/Message';
 
-import Message from './components/Message';
-
-import { Games } from './types';
-import { useStateValue } from './state';
+import { Game } from './types';
 
 const App = () => {
 	const [darkMode, setdarkMode] = useState(false);
-	const [{ message },] = useStateValue();
-
 	const toggleTheme = (currTheme: boolean) => setdarkMode(!currTheme);
 
 	return (
 		<ThemeProvider theme={{ darkMode }}>
-			<Message message={message} />
 			<DarkMode toggleTheme={toggleTheme} darkMode={darkMode} />
 			<GlobalStyle />
 			<Switch>
-				<Route path={`/${Games.Resistance}/*`}>
+				<Route path={`/${Game.Resistance}/*`}>
 					<RoomLobby />
 				</Route>
 
@@ -34,8 +29,8 @@ const App = () => {
 					<JoinForm />
 				</Route>
 
-				<Route path={`/create/${Games.Resistance}`}>
-					<CreateForm game={Games.Resistance} />
+				<Route path={`/create/${Game.Resistance}`}>
+					<CreateForm gameName={Game.Resistance} />
 				</Route>
 
 				<Route path="/">

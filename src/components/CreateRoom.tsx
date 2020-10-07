@@ -4,15 +4,15 @@ import io from 'socket.io-client';
 import { Link, useHistory } from 'react-router-dom';
 import Form from '../styles/Form';
 import Button from '../styles/Button';
+import Message from './Message';
 
-import { Games } from '../types';
+import { RoomInfo } from '../types';
 import { SERVER_URI } from '../constants';
 import { useStateValue } from '../state';
-import { setSocket, setMessage, setGame, setKey } from '../state/reducer';
+import { setSocket, setName, setGame, setKey, setMessage } from '../state/reducer';
 
-//TODO: form validation
-const CreateForm: React.FC<{ game: Games }> = ({ game }) => {
-	const [name, setName] = useState('');
+const CreateForm: React.FC<{ gameName: string }> = ({ gameName }) => {
+	const [name, setNameField] = useState('');
 	const [, dispatch] = useStateValue();
 	const history = useHistory();
 
@@ -20,22 +20,24 @@ const CreateForm: React.FC<{ game: Games }> = ({ game }) => {
 		event.preventDefault();
 		const socket = io.connect(SERVER_URI);
 		socket.on('invalid', (message: string) => dispatch(setMessage(message)));
-		socket.on('roomKey', (key: string) => {
+		socket.on('valid', (key: string, game: RoomInfo) => {
 			dispatch(setSocket(socket));
+			dispatch(setName(name));
 			dispatch(setGame(game));
 			dispatch(setKey(key));
-			history.push(`/${game}/${key}`);
+			history.push(`/${game.name}/${key}`);
 		});
-		socket.emit('create', name, game);
+		socket.emit('create', name, gameName);
 	};
 
 	return (
 		<>
 			<h1>Create Room</h1>
 			<Form>
+				<Message />
 				<input placeholder="Name"
 					value={name}
-					onChange={event => setName(event.target.value)}>
+					onChange={event => setNameField(event.target.value)}>
 				</input>
 				<br />
 				<Button.Filled onClick={handleCreate}>Create</Button.Filled>

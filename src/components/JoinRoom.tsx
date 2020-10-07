@@ -4,16 +4,16 @@ import io from 'socket.io-client';
 import { Link, useHistory } from 'react-router-dom';
 import Form from '../styles/Form';
 import Button from '../styles/Button';
+import Message from './Message';
 
-import { Games } from '../types';
+import { RoomInfo } from '../types';
 import { SERVER_URI } from '../constants';
 import { useStateValue } from '../state';
-import { setSocket, setMessage, setGame, setKey } from '../state/reducer';
+import { setSocket, setName, setGame, setKey, setMessage } from '../state/reducer';
 
-//TODO: form validation
 const JoinForm = () => {
-	const [name, setName] = useState('');
-	const [key, setRoomKey] = useState('');
+	const [name, setNameField] = useState('');
+	const [key, setKeyField] = useState('');
 
 	const [, dispatch] = useStateValue();
 	const history = useHistory();
@@ -22,11 +22,12 @@ const JoinForm = () => {
 		event.preventDefault();
 		const socket = io.connect(SERVER_URI);
 		socket.on('invalid', (message: string) => dispatch(setMessage(message)));
-		socket.on('valid', (game: Games) => {
+		socket.on('valid', (game: RoomInfo) => {
 			dispatch(setSocket(socket));
+			dispatch(setName(name));
 			dispatch(setGame(game));
 			dispatch(setKey(key));
-			history.push(`/${game}/${key}`);
+			history.push(`/${game.name}/${key}`);
 		});
 		socket.emit('join', name, key);
 	};
@@ -35,14 +36,15 @@ const JoinForm = () => {
 		<>
 			<h1>Join Room</h1>
 			<Form>
+				<Message />
 				<input placeholder="Name"
 					value={name}
-					onChange={event => setName(event.target.value)}
+					onChange={event => setNameField(event.target.value)}
 				></input>
 				<br />
 				<input placeholder="Room Key"
 					value={key}
-					onChange={event => setRoomKey(event.target.value)}
+					onChange={event => setKeyField(event.target.value)}
 				></input>
 				<br />
 				<Link to="/lobby">

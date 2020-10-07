@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 import { colors } from './Global';
 
-export const GamesContainer = styled.div`
+export const CardContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin: auto;
 `;
 
-export const GameCard = styled.div`
+export const Card = styled.div`
 	color: white;
 	background: ${props => props.theme.darkMode ? colors.fg : colors.bg};
 

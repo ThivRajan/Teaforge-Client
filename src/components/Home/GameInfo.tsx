@@ -9,9 +9,9 @@ import Button from '../../styles/Button';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Games } from '../../types';
+import { Game } from '../../types';
 
-const GameDescription: React.FC<{ game: Games; modalOpen: boolean; closeModal: Function }> =
+const GameDescription: React.FC<{ game: Game; modalOpen: boolean; closeModal: Function }> =
 	({ game, modalOpen, closeModal }) => {
 
 		return (

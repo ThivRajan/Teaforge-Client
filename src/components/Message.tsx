@@ -1,13 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Message: React.FC<{ message: string }> = ({ message }) => {
-	if (message) return <MessageBox>{message}</MessageBox>;
+import { useStateValue } from '../state';
+import { setMessage } from '../state/reducer';
+
+import { colors } from '../styles/Global';
+
+const Message = () => {
+	const [{ message }, dispatch] = useStateValue();
+
+	if (message) {
+		setTimeout(() => {
+			dispatch(setMessage(''));
+		}, 1500);
+		return <StyledMessage>{message}</StyledMessage>;
+	}
 	else return null;
 };
 
-const MessageBox = styled.div`
-	background: salmon;
+const StyledMessage = styled.div`
+	color: ${colors.red};
+	font-size: 20px;
 `;
 
 export default Message;

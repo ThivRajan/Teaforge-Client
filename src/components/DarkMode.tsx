@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+//TODO: considering saving darkmode preference as part of local machine
 const DarkMode: React.FC<{ toggleTheme: Function; darkMode: boolean }>
 	= ({ toggleTheme, darkMode }) => {
 		const icon = darkMode ? faSun : faMoon;
