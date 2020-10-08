@@ -7,7 +7,7 @@ import Button from '../styles/Button';
 import { RoomInfo } from '../types';
 import { useStateValue } from '../state';
 import { clearState } from '../state/reducer';
-import { setGame } from '../state/reducer';
+import { setGame, setMessage } from '../state/reducer';
 
 //TODO: Consider saving key as part of local machine AND/OR state
 const RoomLobby = () => {
@@ -18,6 +18,11 @@ const RoomLobby = () => {
 		if (game && socket && key) {
 			socket.on('update', (game: RoomInfo) => {
 				dispatch(setGame(game));
+			});
+			socket.on('disconnect', () => {
+				socket.disconnect();
+				dispatch(setMessage('Server went down'));
+				history.push('/join');
 			});
 		} else {
 			history.push('/join');
