@@ -9,7 +9,6 @@ import { useStateValue } from '../state';
 import { clearState } from '../state/reducer';
 import { setGame, setMessage } from '../state/reducer';
 
-//TODO: Consider saving key as part of local machine AND/OR state
 const RoomLobby = () => {
 	const [{ socket, name, game, key }, dispatch] = useStateValue();
 	const history = useHistory();
