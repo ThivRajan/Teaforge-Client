@@ -2,15 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Button from '../../styles/Button';
-import GameList from './GameList';
+import Button from '../styles/Button';
+import GameList from './misc/GameList';
 
 const SubHeader = styled.p`
 	font-size: 23px;
 	margin-top: 0;
 `;
 
-const Main = () => {
+const Home = () => {
 	return (
 		<>
 			<h1>Teaforge</h1>
@@ -23,4 +23,4 @@ const Main = () => {
 	);
 };
 
-export default Main;
+export default Home;

@@ -23,12 +23,17 @@ const RoomLobby = () => {
 				dispatch(setMessage('Server went down'));
 				history.push('/join');
 			});
+			socket.on('start', () => {
+				history.push(`/${game}/${key}/play`);
+			});
 		} else {
 			history.push('/join');
 		}
 	}, [history, socket, key, game, dispatch]);
 
-	if (!game || !name || !key || !socket) return <>...Loading</>;
+	if (!game || !name || !key || !socket) {
+		return <>...Loading</>;
+	}
 
 	const handleLeave = () => {
 		socket?.close();

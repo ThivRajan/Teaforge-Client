@@ -13,7 +13,6 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
-		"baseUrl": "./",
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"moduleResolution": "node",
@@ -23,7 +22,7 @@
 		"isolatedModules": true,
 		"skipLibCheck": true,
 		"allowSyntheticDefaultImports": true,
-		"noEmit": true
+		"noEmit": true,
 	},
 	"include": [
 		"src"

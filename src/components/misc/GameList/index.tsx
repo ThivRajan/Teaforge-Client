@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import Description from './GameInfo';
-import Players from '../../styles/Players';
-import { Card, CardContainer } from '../../styles/Card';
+import GameRules from './GameRules';
+import Players from '../../../styles/Players';
+import { Card, CardContainer } from '../../../styles/Card';
 
-import fist from '../../assets/fist.png';
-import { Game } from '../../types';
+import fist from '../../../assets/fist.png';
+import { Game } from '../../../types';
 
 const GameList = () => {
 	return (
@@ -39,7 +39,7 @@ const GameCard: React.FC<{ game: Game; imgSrc: string; description: string; play
 						<Players players={playerCount} />
 					</div>
 				</Card>
-				<Description game={game} modalOpen={modalOpen} closeModal={closeModal} />
+				<GameRules game={game} modalOpen={modalOpen} closeModal={closeModal} />
 			</>
 		);
 	};

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import io from 'socket.io-client';
 
 import { Link, useHistory } from 'react-router-dom';
+import Message from './misc/Message';
 import Form from '../styles/Form';
 import Button from '../styles/Button';
-import Message from './Message';
 
 import { RoomInfo } from '../types';
 import { SERVER_URI } from '../constants';

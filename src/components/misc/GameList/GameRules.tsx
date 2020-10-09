@@ -2,16 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
-import Container from '../../styles/Info';
-import Players from '../../styles/Players';
-import Button from '../../styles/Button';
+import Container from '../../../styles/Info';
+import Players from '../../../styles/Players';
+import Button from '../../../styles/Button';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Game } from '../../types';
+import { Game } from '../../../types';
 
-const GameDescription: React.FC<{ game: Game; modalOpen: boolean; closeModal: Function }> =
+const GameRules: React.FC<{ game: Game; modalOpen: boolean; closeModal: Function }> =
 	({ game, modalOpen, closeModal }) => {
 
 		return (
@@ -84,8 +84,6 @@ const GameDescription: React.FC<{ game: Game; modalOpen: boolean; closeModal: Fu
 					to sneak onto the mission and fail it. If you are resistance, then try
 					to figure out who the spies are and stop them from going on the mission.
 				</b>
-
-
 			</Container>
 		);
 	};
@@ -99,4 +97,4 @@ const CloseIcon = styled(FontAwesomeIcon)`
 	}
 `;
 
-export default GameDescription;
+export default GameRules;

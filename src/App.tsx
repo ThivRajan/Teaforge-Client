@@ -3,11 +3,13 @@ import { Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/Global';
 
-import DarkMode from './components/DarkMode';
+import DarkMode from './components/misc/DarkMode';
 import Home from './components/Home';
 import JoinForm from './components/JoinRoom';
 import CreateForm from './components/CreateRoom';
 import RoomLobby from './components/RoomLobby';
+
+import Resistance from './components/games/Resistance';
 
 import { Game } from './types';
 
@@ -24,6 +26,7 @@ const App = () => {
 		else setdarkMode(false);
 	}, []);
 
+	//TODO: optimize routing with useHistory; both in here & individual components
 	return (
 		<ThemeProvider theme={{ darkMode }}>
 			<DarkMode toggleTheme={toggleTheme} darkMode={darkMode} />
@@ -39,6 +42,10 @@ const App = () => {
 
 				<Route path={`/create/${Game.Resistance}`}>
 					<CreateForm gameName={Game.Resistance} />
+				</Route>
+
+				<Route path={`/${Game.Resistance}/*/play`}>
+					<Resistance />
 				</Route>
 
 				<Route path="/">

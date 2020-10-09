@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import { Link, useHistory } from 'react-router-dom';
 import Form from '../styles/Form';
 import Button from '../styles/Button';
-import Message from './Message';
+import Message from './misc/Message';
 
 import { RoomInfo } from '../types';
 import { SERVER_URI } from '../constants';
@@ -55,7 +55,6 @@ const JoinForm = () => {
 				</Link>
 			</Form>
 		</>
-
 	);
 };
 

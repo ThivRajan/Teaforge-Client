@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { useStateValue } from '../state';
-import { setMessage } from '../state/reducer';
+import { useStateValue } from '../../state';
+import { setMessage } from '../../state/reducer';
 
-import { colors } from '../styles/Global';
+import { colors } from '../../styles/Global';
 
 const Message = () => {
 	const [{ message }, dispatch] = useStateValue();
