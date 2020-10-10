@@ -32,6 +32,10 @@ const App = () => {
 			<DarkMode toggleTheme={toggleTheme} darkMode={darkMode} />
 			<GlobalStyle />
 			<Switch>
+				<Route path={`/${Game.Resistance}/*/play`}>
+					<Resistance />
+				</Route>
+
 				<Route path={`/${Game.Resistance}/*`}>
 					<RoomLobby />
 				</Route>
@@ -42,10 +46,6 @@ const App = () => {
 
 				<Route path={`/create/${Game.Resistance}`}>
 					<CreateForm gameName={Game.Resistance} />
-				</Route>
-
-				<Route path={`/${Game.Resistance}/*/play`}>
-					<Resistance />
 				</Route>
 
 				<Route path="/">

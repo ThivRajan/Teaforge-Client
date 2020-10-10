@@ -11,6 +11,7 @@ import { SERVER_URI } from '../constants';
 import { useStateValue } from '../state';
 import { setSocket, setName, setGame, setKey, setMessage } from '../state/reducer';
 
+//TODO: maybe take name directly from server instead of using local version for the state
 const CreateForm: React.FC<{ gameName: string }> = ({ gameName }) => {
 	const [name, setNameField] = useState('');
 	const [, dispatch] = useStateValue();

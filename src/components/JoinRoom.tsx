@@ -11,6 +11,7 @@ import { SERVER_URI } from '../constants';
 import { useStateValue } from '../state';
 import { setSocket, setName, setGame, setKey, setMessage } from '../state/reducer';
 
+//TODO: maybe take the key & name directly from server instead of using local version
 const JoinForm = () => {
 	const [name, setNameField] = useState('');
 	const [key, setKeyField] = useState('');

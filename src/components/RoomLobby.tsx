@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { Link, useHistory } from 'react-router-dom';
+import Message from './misc/Message';
 import Button from '../styles/Button';
 
 import { RoomInfo } from '../types';
@@ -20,11 +21,11 @@ const RoomLobby = () => {
 			});
 			socket.on('disconnect', () => {
 				socket.disconnect();
-				dispatch(setMessage('Server went down'));
 				history.push('/join');
+				dispatch(setMessage('Server went down'));
 			});
 			socket.on('start', () => {
-				history.push(`/${game}/${key}/play`);
+				history.push(`/${game.name}/${key}/play`);
 			});
 		} else {
 			history.push('/join');
@@ -59,6 +60,7 @@ const RoomLobby = () => {
 		<Lobby>
 			<h1>{`${game.name}: ${key}`}</h1>
 			<p>Need {game.reqPlayers - game.players.length} more players to start</p>
+			<Message />
 			<ol>
 				{game.players.map(p =>
 					(game.host === p)
