@@ -1,8 +1,11 @@
+/* eslint-disable indent */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { useHistory } from 'react-router-dom';
 import { useStateValue } from '../../../state';
+
+import TeamView from './TeamView';
 
 //TODO: refactor board to be dynamic in respect to room size
 //TODO: considering making constants for the roles
@@ -15,6 +18,9 @@ const Resistance = () => {
 	const [{ socket, name, game, key },] = useStateValue();
 	const [role, setRole] = useState('');
 	const [missions, setMission] = useState<Mission[]>([]);
+	const [phase, setPhase] = useState('');
+
+	const [leader, setLeader] = useState('');
 
 	const history = useHistory();
 
@@ -23,6 +29,10 @@ const Resistance = () => {
 		if (game && socket && key) {
 			socket.on('role', (role: string) => setRole(role));
 			socket.on('missions', (missions: Mission[]) => setMission(missions));
+
+			socket.on('teamCreation', () => setPhase('teamCreation'));
+			socket.on('teamLeader', (leader: string) => setLeader(leader));
+
 			socket.emit('ready');
 		} else {
 			history.push('/join');
@@ -32,6 +42,16 @@ const Resistance = () => {
 	if (!game || !name || !key || !socket) {
 		return <>...Loading</>;
 	}
+
+	//TODO: maybe throw error on default
+	const handleView = (phase: string) => {
+		switch (phase) {
+			case 'teamCreation':
+				return <TeamView leader={leader} />;
+			default:
+				return <></>;
+		}
+	};
 
 	return (
 		<div>
@@ -43,7 +63,7 @@ const Resistance = () => {
 					</MissionResult>)
 				}
 			</MissionBoard>
-
+			{handleView(phase)}
 		</div>
 	);
 };
