@@ -21,6 +21,7 @@ const Resistance = () => {
 	const [phase, setPhase] = useState('');
 
 	const [leader, setLeader] = useState('');
+	const [team, setTeam] = useState<string[]>([]);
 
 	const history = useHistory();
 
@@ -32,12 +33,13 @@ const Resistance = () => {
 
 			socket.on('teamCreation', () => setPhase('teamCreation'));
 			socket.on('teamLeader', (leader: string) => setLeader(leader));
+			socket.on('choosePlayer', (player: string) => setTeam(team.concat(player)));
 
 			socket.emit('ready');
 		} else {
 			history.push('/join');
 		}
-	}, [history, socket, key, game]);
+	}, [history, socket, key, game, team]);
 
 	if (!game || !name || !key || !socket) {
 		return <>...Loading</>;
