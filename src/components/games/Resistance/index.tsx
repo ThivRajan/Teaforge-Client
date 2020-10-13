@@ -6,12 +6,15 @@ import { useHistory } from 'react-router-dom';
 import { useStateValue } from '../../../state';
 
 import TeamView from './TeamView';
+import Message from '../../misc/Message';
 
 //TODO: refactor board to be dynamic in respect to room size
 //TODO: considering making constants for the roles
+//TODO: add rules modal to this component
+
 interface Mission {
-	players: number;
-	result: 'pass' | 'fail' | '';
+	numPlayers: number;
+	result: 'passed' | 'failed' | '';
 }
 
 const Resistance = () => {
@@ -33,13 +36,13 @@ const Resistance = () => {
 
 			socket.on('teamCreation', () => setPhase('teamCreation'));
 			socket.on('teamLeader', (leader: string) => setLeader(leader));
-			socket.on('choosePlayer', (player: string) => setTeam(team.concat(player)));
+			socket.on('teamUpdate', (team: string[]) => setTeam(team));
 
 			socket.emit('ready');
 		} else {
 			history.push('/join');
 		}
-	}, [history, socket, key, game, team]);
+	}, [history, socket, key, game]);
 
 	if (!game || !name || !key || !socket) {
 		return <>...Loading</>;
@@ -49,7 +52,7 @@ const Resistance = () => {
 	const handleView = (phase: string) => {
 		switch (phase) {
 			case 'teamCreation':
-				return <TeamView leader={leader} />;
+				return <TeamView leader={leader} team={team} />;
 			default:
 				return <></>;
 		}
@@ -61,10 +64,11 @@ const Resistance = () => {
 			<MissionBoard>
 				{missions.map((mission, index) =>
 					<MissionResult key={index} result={mission.result}>
-						{mission.players}
+						{mission.numPlayers}
 					</MissionResult>)
 				}
 			</MissionBoard>
+			<Message />
 			{handleView(phase)}
 		</div>
 	);
@@ -77,7 +81,7 @@ const MissionBoard = styled.div`
 `;
 
 interface ResultProps {
-	result: 'pass' | 'fail' | '';
+	result: 'passed' | 'failed' | '';
 }
 const MissionResult = styled.div<ResultProps>`
 	display: flex;
@@ -96,7 +100,7 @@ const MissionResult = styled.div<ResultProps>`
 	color: ${props => props.theme.darkMode ? 'white' : 'black'};
 
 	background: ${(props) => {
-		if (props.result) return props.result === 'pass' ? 'blue' : 'red';
+		if (props.result) return props.result === 'passed' ? 'blue' : 'red';
 		return 'none';
 	}}
 `;

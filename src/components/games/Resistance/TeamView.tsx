@@ -3,10 +3,12 @@ import { useStateValue } from '../../../state';
 import styled from 'styled-components';
 
 import { colors } from '../../../styles/Global';
+import Button from '../../../styles/Button';
 
 //TODO: text-transform: none
 //TODO: style player list based on who's chosen
-const TeamView: React.FC<{ leader: string }> = ({ leader }) => {
+//TODO: fix role changing on click of player
+const TeamView: React.FC<{ leader: string; team: string[] }> = ({ leader, team }) => {
 	const [{ socket, name, game },] = useStateValue();
 
 	if (leader === name) {
@@ -16,16 +18,28 @@ const TeamView: React.FC<{ leader: string }> = ({ leader }) => {
 				<PlayerList>
 					{
 						game?.players.map(
-							player =>
-								<Player key={player}
-									onClick={() => socket?.emit('choosePlayer', player)}>
-									{player}
-								</Player>
+							player => {
+								let action = 'choose';
+								let chosen = false;
+								if (team.includes(player)) {
+									action = 'remove';
+									chosen = true;
+								}
+								return (
+									<PlayerOption key={player} chosen={chosen}
+										onClick={() =>
+											socket?.emit('teamUpdate', action, player)}>
+										{player}
+									</PlayerOption>
+								);
+							}
 						)
 					}
+					<Button.Outlined onClick={() =>
+						socket?.emit('teamConfirm')}>
+						Confirm Team
+					</Button.Outlined>
 				</PlayerList>
-
-				<button>Confirm Team</button>
 			</div>
 		);
 	} else {
@@ -37,7 +51,15 @@ const TeamView: React.FC<{ leader: string }> = ({ leader }) => {
 				<PlayerList>
 					{
 						game?.players.map(
-							player => <PlayerOption key={player}>{player}</PlayerOption>)
+							player => {
+								const chosen = team.includes(player) ? true : false;
+								return (
+									<Player key={player} chosen={chosen}>
+										{player}
+									</Player>
+								);
+							}
+						)
 					}
 				</PlayerList>
 			</div>
@@ -45,9 +67,20 @@ const TeamView: React.FC<{ leader: string }> = ({ leader }) => {
 	}
 };
 
-const Player = styled.li`
+interface PlayerProps {
+	chosen: boolean;
+}
+const Player = styled.li<PlayerProps>`
 	list-style-type: none;
-	background: ${props => props.theme.darkMode ? colors.fg : colors.bg};
+	background: ${props => {
+		if (props.theme.darkMode) {
+			if (props.chosen) return colors.lightRed;
+			return colors.fg;
+		} else {
+			if (props.chosen) return colors.red;
+			else return colors.bg;
+		}
+	}};
 	color: white;
 	padding: 8px;
 	margin-bottom: 8px;
@@ -55,16 +88,23 @@ const Player = styled.li`
 `;
 
 const PlayerOption = styled(Player)`
-	transition: background 100ms;
-
 	:hover {
 		background: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
+		filter: ${props => props.chosen ? 'brightness(80%)' : 'none'};
+		cursor: pointer;
 	}
 `;
 
 const PlayerList = styled.div`
 	margin: auto;
 	width: 300px;
+
+	button {
+		margin:auto;
+		margin-top: 5px;
+		width: 100%;
+		font-size: 20px;
+	}
 `;
 
 export default TeamView;
