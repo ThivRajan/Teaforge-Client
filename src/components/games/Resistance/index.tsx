@@ -7,11 +7,13 @@ import { useStateValue } from '../../../state';
 
 import TeamView from './TeamView';
 import VoteView from './VoteView';
+import MissionView from './MissionView';
 import Message from '../../misc/Message';
 
 //TODO: refactor board to be dynamic in respect to room size
 //TODO: considering making constants for the roles
 //TODO: add rules modal to this component
+//TODO: display transition messages between phases
 
 interface Mission {
 	numPlayers: number;
@@ -42,6 +44,12 @@ const Resistance = () => {
 				setPhase('teamVoting');
 				setTeam(team);
 			});
+			socket.on('teamApproved', () => setPhase('mission'));
+			socket.on('teamRejected', (leader: string) => {
+				setPhase('teamCreation');
+				setTeam([]);
+				setLeader(leader);
+			});
 
 			socket.emit('ready');
 		} else {
@@ -60,6 +68,8 @@ const Resistance = () => {
 				return <TeamView leader={leader} team={team} />;
 			case 'teamVoting':
 				return <VoteView leader={leader} team={team} />;
+			case 'mission':
+				return <MissionView team={team} />;
 			default:
 				return <></>;
 		}
