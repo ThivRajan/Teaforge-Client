@@ -29,9 +29,12 @@ const Resistance = () => {
 	const [leader, setLeader] = useState('');
 	const [team, setTeam] = useState<string[]>([]);
 
+	const [winner, setWinner] = useState('');
+
 	const history = useHistory();
 
 	//TODO: style the role names
+	//TODO: approved teams are not getting cleared between phases
 	useEffect(() => {
 		if (game && socket && key) {
 			socket.on('role', (role: string) => setRole(role));
@@ -44,11 +47,15 @@ const Resistance = () => {
 				setPhase('teamVoting');
 				setTeam(team);
 			});
+
 			socket.on('teamApproved', () => setPhase('mission'));
 			socket.on('teamRejected', (leader: string) => {
 				setPhase('teamCreation');
 				setTeam([]);
 				setLeader(leader);
+			});
+			socket.on('gameOver', (winner: string) => {
+				setWinner(winner);
 			});
 
 			socket.emit('ready');
@@ -74,6 +81,17 @@ const Resistance = () => {
 				return <></>;
 		}
 	};
+
+	//TODO: styling in this block
+	if (winner) {
+		const result = role[0] === winner[0] ? 'won' : 'lost';
+		return (
+			<>
+				<h1>The {winner} won!</h1>
+				<h4>You {result}</h4>
+			</>
+		);
+	}
 
 	return (
 		<div>

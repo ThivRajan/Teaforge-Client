@@ -12,7 +12,7 @@ const TeamView: React.FC<{ leader: string; team: string[] }> = ({ leader, team }
 	if (leader === name) {
 		return (
 			<div>
-				<h3>You&apos;re the leader! Choose who will go on the mission!</h3>
+				<p>You&apos;re the leader! Choose who will go on the mission!</p>
 				<List>
 					{
 						game?.players.map(

@@ -12,7 +12,7 @@ const Message = () => {
 	if (message) {
 		setTimeout(() => {
 			dispatch(setMessage(''));
-		}, 1500);
+		}, 3000);
 		return <StyledMessage>{message}</StyledMessage>;
 	}
 	else return null;

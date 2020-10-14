@@ -6,7 +6,6 @@ import PlayerList from './PlayerList';
 import Button from '../../../styles/Button';
 
 //TODO: text-transform: none
-//TODO: disable button after vote
 const VoteView: React.FC<{ leader: string; team: string[] }> = ({ leader, team }) => {
 	const [{ socket, game },] = useStateValue();
 	const [submitted, setSubmitted] = useState(false);
@@ -36,9 +35,7 @@ const VoteView: React.FC<{ leader: string; team: string[] }> = ({ leader, team }
 
 	return (
 		<div>
-			<p>
-				{leader} has chosen this team. Will you approve it?
-			</p>
+			<p>{leader} has chosen this team. Will you approve it?</p>
 			<PlayerList team={team} players={game?.players} />
 			{showButtons()}
 		</div>
