@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { useStateValue } from '../../../state';
 
 import TeamView from './TeamView';
+import VoteView from './VoteView';
 import Message from '../../misc/Message';
 
 //TODO: refactor board to be dynamic in respect to room size
@@ -37,6 +38,10 @@ const Resistance = () => {
 			socket.on('teamCreation', () => setPhase('teamCreation'));
 			socket.on('teamLeader', (leader: string) => setLeader(leader));
 			socket.on('teamUpdate', (team: string[]) => setTeam(team));
+			socket.on('teamConfirm', (team: string[]) => {
+				setPhase('teamVoting');
+				setTeam(team);
+			});
 
 			socket.emit('ready');
 		} else {
@@ -53,6 +58,8 @@ const Resistance = () => {
 		switch (phase) {
 			case 'teamCreation':
 				return <TeamView leader={leader} team={team} />;
+			case 'teamVoting':
+				return <VoteView leader={leader} team={team} />;
 			default:
 				return <></>;
 		}
@@ -87,8 +94,6 @@ const MissionResult = styled.div<ResultProps>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	// margin-left: 10px;
-	// margin-right: 10px;
 	margin: 8px;
 
 	height: 70px;

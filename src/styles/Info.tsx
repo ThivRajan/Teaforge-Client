@@ -3,7 +3,7 @@ import ReactModal from 'react-modal';
 
 import { colors } from './Global';
 
-const Container = styled(ReactModal)`
+const InfoContainer = styled(ReactModal)`
 	color: ${props => props.theme.darkMode ? 'white' : 'black'};
 	background: ${props => props.theme.darkMode ? colors.bg : 'white'};
 	border: ${props => props.theme.darkMode ? 'none' : '1px solid black'};
@@ -68,4 +68,4 @@ const Container = styled(ReactModal)`
 	}
 `;
 
-export default Container;
+export default InfoContainer;

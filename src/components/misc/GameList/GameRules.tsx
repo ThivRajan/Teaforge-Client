@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
-import Container from '../../../styles/Info';
+import InfoContainer from '../../../styles/Info';
 import Players from '../../../styles/Players';
 import Button from '../../../styles/Button';
 
@@ -15,7 +15,7 @@ const GameRules: React.FC<{ game: Game; modalOpen: boolean; closeModal: Function
 	({ game, modalOpen, closeModal }) => {
 
 		return (
-			<Container
+			<InfoContainer
 				isOpen={modalOpen}
 				shouldCloseOnOverlayClick={true}
 				shouldCloseOnEsc={true}
@@ -84,7 +84,7 @@ const GameRules: React.FC<{ game: Game; modalOpen: boolean; closeModal: Function
 					to sneak onto the mission and fail it. If you are resistance, then try
 					to figure out who the spies are and stop them from going on the mission.
 				</b>
-			</Container>
+			</InfoContainer>
 		);
 	};
 
