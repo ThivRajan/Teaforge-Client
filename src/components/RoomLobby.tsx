@@ -37,12 +37,12 @@ const RoomLobby = () => {
 	}
 
 	const handleLeave = () => {
-		socket?.close();
+		socket.close();
 		dispatch(clearState());
 	};
 
 	const handleStart = () => {
-		socket?.emit('start');
+		socket.emit('start');
 	};
 
 	const startButton = () => {

@@ -17,6 +17,7 @@ const JoinForm = () => {
 
 	const [, dispatch] = useStateValue();
 	const history = useHistory();
+	history.push('/join');
 
 	const handleJoin = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();

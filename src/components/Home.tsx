@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Button from '../styles/Button';
 import GameList from './misc/GameList';
+
 
 const SubHeader = styled.p`
 	font-size: 23px;
@@ -11,6 +12,9 @@ const SubHeader = styled.p`
 `;
 
 const Home = () => {
+	const history = useHistory();
+	history.push('/');
+
 	return (
 		<>
 			<h1>Teaforge</h1>

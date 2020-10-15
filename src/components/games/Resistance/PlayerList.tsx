@@ -3,16 +3,11 @@ import styled from 'styled-components';
 
 import { colors } from '../../../styles/Global';
 
-//TODO: refine the error or something
 const PlayerList: React.FC<{ players: string[] | undefined; team: string[] }> = ({ players, team }) => {
-	if (players === undefined) {
-		throw Error('Invalid game instance');
-	}
-
 	return (
 		<List>
 			{
-				players.map(
+				players?.map(
 					player => {
 						const chosen = team.includes(player) ? true : false;
 						return (

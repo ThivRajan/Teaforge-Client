@@ -15,6 +15,7 @@ const CreateForm: React.FC<{ gameName: string }> = ({ gameName }) => {
 	const [name, setNameField] = useState('');
 	const [, dispatch] = useStateValue();
 	const history = useHistory();
+	history.push(`/create/${gameName}`);
 
 	const handleCreate = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();

@@ -26,7 +26,6 @@ const App = () => {
 		else setdarkMode(false);
 	}, []);
 
-	//TODO: optimize routing with useHistory; both in here & individual components
 	return (
 		<ThemeProvider theme={{ darkMode }}>
 			<DarkMode toggleTheme={toggleTheme} darkMode={darkMode} />

@@ -21,7 +21,7 @@ interface Mission {
 }
 
 const Resistance = () => {
-	const [{ socket, name, game, key },] = useStateValue();
+	const [{ socket, name, key, game },] = useStateValue();
 	const [role, setRole] = useState('');
 	const [missions, setMission] = useState<Mission[]>([]);
 	const [phase, setPhase] = useState('');
@@ -34,7 +34,7 @@ const Resistance = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		if (game && socket && key) {
+		if (name && game && socket && key) {
 			socket.on('role', (role: string) => setRole(role));
 			socket.on('missions', (missions: Mission[]) => setMission(missions));
 
@@ -60,13 +60,8 @@ const Resistance = () => {
 		} else {
 			history.push('/join');
 		}
-	}, [history, socket, key, game]);
+	}, [history, socket, key, game, name]);
 
-	if (!game || !name || !key || !socket) {
-		return <>...Loading</>;
-	}
-
-	//TODO: maybe throw error on default
 	const handleView = (phase: string) => {
 		switch (phase) {
 			case 'teamCreation':
@@ -76,7 +71,7 @@ const Resistance = () => {
 			case 'mission':
 				return <MissionView team={team} />;
 			default:
-				return <></>;
+				throw new Error('Invalid phase provided');
 		}
 	};
 
