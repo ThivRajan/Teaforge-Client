@@ -5,7 +5,6 @@ import { useStateValue } from '../../../state';
 import PlayerList, { List, PlayerOption } from './PlayerList';
 import Button from '../../../styles/Button';
 
-//TODO: text-transform: none
 const TeamView: React.FC<{ leader: string; team: string[] }> = ({ leader, team }) => {
 	const [{ socket, name, game },] = useStateValue();
 

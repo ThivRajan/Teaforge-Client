@@ -10,10 +10,10 @@ import VoteView from './VoteView';
 import MissionView from './MissionView';
 import Message from '../../misc/Message';
 
-//TODO: refactor board to be dynamic in respect to room size
-//TODO: considering making constants for the roles
 //TODO: add rules modal to this component
 //TODO: display transition messages between phases
+//TODO: clean up the colours
+//TODO: figure out font sizing problems with different devices
 
 interface Mission {
 	numPlayers: number;
@@ -33,8 +33,6 @@ const Resistance = () => {
 
 	const history = useHistory();
 
-	//TODO: style the role names
-	//TODO: approved teams are not getting cleared between phases
 	useEffect(() => {
 		if (game && socket && key) {
 			socket.on('role', (role: string) => setRole(role));
@@ -95,7 +93,7 @@ const Resistance = () => {
 
 	return (
 		<div>
-			<h1>Role: {role}</h1>
+			<h1>Role:{' '}<Role role={role}>{role}</Role></h1>
 			<MissionBoard>
 				{missions.map((mission, index) =>
 					<MissionResult key={index} result={mission.result}>
@@ -109,15 +107,19 @@ const Resistance = () => {
 	);
 };
 
+interface RoleProps { role: string }
+const Role = styled.span<RoleProps>`
+	color: ${props => props.role === 'resistance' ? 'blue' : 'red'};
+	font-size: 45px;
+`;
+
 const MissionBoard = styled.div`
 	display: flex;
 	align-items: center;
 	margin: 10px;
 `;
 
-interface ResultProps {
-	result: 'passed' | 'failed' | '';
-}
+interface ResultProps { result: 'passed' | 'failed' | '' }
 const MissionResult = styled.div<ResultProps>`
 	display: flex;
 	align-items: center;
