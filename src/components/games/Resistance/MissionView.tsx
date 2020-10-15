@@ -4,7 +4,6 @@ import { useStateValue } from '../../../state';
 
 import Button from '../../../styles/Button';
 
-//TODO: text-transform: none
 const MissionView: React.FC<{ team: string[] }> = ({ team }) => {
 	const [{ socket, name },] = useStateValue();
 	const [submitted, setSubmitted] = useState(false);

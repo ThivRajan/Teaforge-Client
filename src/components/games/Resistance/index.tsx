@@ -80,13 +80,12 @@ const Resistance = () => {
 		}
 	};
 
-	//TODO: styling in this block
 	if (winner) {
 		const result = role[0] === winner[0] ? 'won' : 'lost';
 		return (
 			<>
-				<h1>The {winner} won!</h1>
-				<h4>You {result}</h4>
+				<h1>You {result}!</h1>
+				<h2>{' '} <Role role={winner}>{winner}</Role> won</h2>
 			</>
 		);
 	}
@@ -109,8 +108,9 @@ const Resistance = () => {
 
 interface RoleProps { role: string }
 const Role = styled.span<RoleProps>`
-	color: ${props => props.role === 'resistance' ? 'blue' : 'red'};
-	font-size: 45px;
+	color: ${props => props.role === 'spies' || props.role === 'spy'
+		? 'red'
+		: 'blue'};
 `;
 
 const MissionBoard = styled.div`

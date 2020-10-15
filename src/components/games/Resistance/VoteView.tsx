@@ -5,7 +5,6 @@ import { useStateValue } from '../../../state';
 import PlayerList from './PlayerList';
 import Button from '../../../styles/Button';
 
-//TODO: text-transform: none
 const VoteView: React.FC<{ leader: string; team: string[] }> = ({ leader, team }) => {
 	const [{ socket, game },] = useStateValue();
 	const [submitted, setSubmitted] = useState(false);

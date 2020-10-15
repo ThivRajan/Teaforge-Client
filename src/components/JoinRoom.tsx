@@ -11,7 +11,6 @@ import { SERVER_URI } from '../constants';
 import { useStateValue } from '../state';
 import { setSocket, setName, setGame, setKey, setMessage } from '../state/reducer';
 
-//TODO: maybe take the key & name directly from server instead of using local version
 const JoinForm = () => {
 	const [name, setNameField] = useState('');
 	const [key, setKeyField] = useState('');
@@ -23,7 +22,7 @@ const JoinForm = () => {
 		event.preventDefault();
 		const socket = io.connect(SERVER_URI);
 		socket.on('invalid', (message: string) => dispatch(setMessage(message)));
-		socket.on('valid', (game: RoomInfo) => {
+		socket.on('valid', (name: string, key: string, game: RoomInfo) => {
 			dispatch(setSocket(socket));
 			dispatch(setName(name));
 			dispatch(setGame(game));
