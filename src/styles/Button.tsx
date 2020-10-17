@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { colors } from './Global';
 
-const buttonStyle = css`
+export const buttonStyle = css`
 	margin-bottom: 1.2rem;
 	margin-right: 0.5rem;
 	margin-left: 0.5rem;

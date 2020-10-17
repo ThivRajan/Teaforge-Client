@@ -13,9 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Game } from '../../types';
 import Resistance from '../rules/Resistance';
 
-//TODO: make playercount a parameter
-
-//TODO: modify resistance rules a little, maybe add a tldr,
+//TODO-DONE: modify resistance rules a little, maybe add a tldr,
 //maybe make the <i> block the tldr
 
 const InfoModal: React.FC<{
@@ -28,11 +26,13 @@ const InfoModal: React.FC<{
 
 	let Goal: React.FC;
 	let Rules: React.FC;
+	let playerCount: string;
 
 	switch (game) {
 		case Game.Resistance:
 			Goal = Resistance.Goal;
 			Rules = Resistance.Rules;
+			playerCount = Resistance.playerCount;
 			break;
 		default:
 			throw Error('Game does not exist');
@@ -68,7 +68,7 @@ const InfoModal: React.FC<{
 			<Goal />
 			{showButtons()}
 			<u>Rules</u>
-			<Players players={'5-10 Players'} />
+			<Players players={playerCount} />
 			<Rules />
 		</InfoContainer>
 	);

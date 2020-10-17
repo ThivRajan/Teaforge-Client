@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -13,7 +13,7 @@ const SubHeader = styled.p`
 
 const Home = () => {
 	const history = useHistory();
-	history.push('/');
+	useEffect(() => history.push('/'));
 
 	return (
 		<>

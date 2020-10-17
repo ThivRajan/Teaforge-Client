@@ -9,10 +9,9 @@ import TeamView from './TeamView';
 import VoteView from './VoteView';
 import MissionView from './MissionView';
 import Message from '../../misc/Message';
-
 import GameModal from '../../misc/InfoModal';
+import Button from '../../../styles/Button';
 
-//TODO: style Rules Button
 //TODO: warning 'cannot update'
 //TODO: display transition messages between phases
 //TODO: figure out font sizing problems with different devices
@@ -151,7 +150,7 @@ const MissionResult = styled.div<ResultProps>`
 `;
 
 /* Required for Rules Button component */
-const Rules = styled.button`
+const Rules = styled(Button.Filled)`
 	padding: 10px;
 	font-size: 20px;
 	position: absolute;

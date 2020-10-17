@@ -1,10 +1,12 @@
 import React from 'react';
 
-export const Goal = () => (
+const playerCount = '5-10 players';
+
+const Goal = () => (
 	<i>Your goal is to either succeed or sabotage the mission</i>
 );
 
-export const Rules = () => (
+const Rules = () => (
 	<>
 		<p>
 			<b>
@@ -55,4 +57,4 @@ export const Rules = () => (
 	</>
 );
 
-export default { Goal, Rules };
+export default { Goal, Rules, playerCount };

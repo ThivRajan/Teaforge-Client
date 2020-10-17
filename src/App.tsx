@@ -39,10 +39,11 @@ const App = () => {
 					<RoomLobby />
 				</Route>
 
-				<Route path="/join">
+				<Route exact path="/join">
 					<JoinForm />
 				</Route>
 
+				{/*TODO: use param matching and replace resistance with wildcard(*) */}
 				<Route path={`/create/${Game.Resistance}`}>
 					<CreateForm gameName={Game.Resistance} />
 				</Route>
