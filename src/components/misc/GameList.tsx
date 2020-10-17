@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 import GameRules from './GameRules';
-import Players from '../../../styles/Players';
-import { Card, CardContainer } from '../../../styles/Card';
+import Players from '../../styles/Players';
+import { Card, CardContainer } from '../../styles/Card';
 
-import fist from '../../../assets/fist.png';
-import { Game } from '../../../types';
+import fist from '../../assets/fist.png';
+import { Game } from '../../types';
 
 const GameList = () => {
 	return (

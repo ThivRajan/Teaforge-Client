@@ -2,18 +2,31 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
-import InfoContainer from '../../../styles/Info';
-import Players from '../../../styles/Players';
-import Button from '../../../styles/Button';
+import InfoContainer from '../../styles/Info';
+import Players from '../../styles/Players';
+import Button from '../../styles/Button';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Game } from '../../../types';
+import { Game } from '../../types';
 
+//TODO: remake the folder for GameList and use the old structure:
+//index.ts for GameList and GameModal (this file)
+
+//TODO: make both GameModal (this file) and RulesModal file (rules only version
+//of this file)
+
+//TODO: make rules and subheaders and put them in the rules folder, organize them by game 
+//(ie. rules/resistance.tsx for resistance rules and subheader)
+
+//TODO: modify resistance rules a little, maybe add a tldr,
+//maybe make the <i> block the tldr
 const GameRules: React.FC<{ game: Game; modalOpen: boolean; closeModal: Function }> =
 	({ game, modalOpen, closeModal }) => {
-
+		//TODO: based on the game type, take a rules section
+		//and subheader from resistance file in rules folder,
+		//handle with switch case
 		return (
 			<InfoContainer
 				isOpen={modalOpen}
@@ -25,7 +38,7 @@ const GameRules: React.FC<{ game: Game; modalOpen: boolean; closeModal: Function
 				ariaHideApp={false}
 			>
 				<CloseIcon icon={faTimes} onClick={() => closeModal()} />
-				<h1>Resistance</h1>
+				<h1>{game}</h1>
 				<i>Your goal is to either succeed or sabotage the mission</i>
 				<div>
 					<Link to="/join">

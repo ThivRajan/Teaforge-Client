@@ -10,10 +10,16 @@ import VoteView from './VoteView';
 import MissionView from './MissionView';
 import Message from '../../misc/Message';
 
-//TODO: add rules modal to this component
+import GameRules from '../../misc/GameRules';
+
+//TODO: Figure out a better way to organize game rules (in case of more games)
+//TODO: style Rules Button
+//TODO: warning 'cannot update'
 //TODO: display transition messages between phases
-//TODO: clean up the colours
 //TODO: figure out font sizing problems with different devices
+//TODO: fix text margins (specifically on <p> elmeents)
+//TODO: clean up the colours
+//TODO: option buttons at the end of the game (leave game, new game maybe)
 
 interface Mission {
 	numPlayers: number;
@@ -28,8 +34,11 @@ const Resistance = () => {
 
 	const [leader, setLeader] = useState('');
 	const [team, setTeam] = useState<string[]>([]);
-
 	const [winner, setWinner] = useState('');
+
+	const [modalOpen, setModalOpen] = useState<boolean>(false);
+	const openModal = (): void => setModalOpen(true);
+	const closeModal = (): void => setModalOpen(false);
 
 	const history = useHistory();
 
@@ -62,6 +71,10 @@ const Resistance = () => {
 		}
 	}, [history, socket, key, game, name]);
 
+	if (!game || !name || !key || !socket) {
+		return <>...Loading</>;
+	}
+
 	const handleView = (phase: string) => {
 		switch (phase) {
 			case 'teamCreation':
@@ -71,7 +84,7 @@ const Resistance = () => {
 			case 'mission':
 				return <MissionView team={team} />;
 			default:
-				throw new Error('Invalid phase provided');
+				return <>...Loading Game</>;
 		}
 	};
 
@@ -86,7 +99,7 @@ const Resistance = () => {
 	}
 
 	return (
-		<div>
+		<Container>
 			<h1>Role:{' '}<Role role={role}>{role}</Role></h1>
 			<MissionBoard>
 				{missions.map((mission, index) =>
@@ -97,9 +110,12 @@ const Resistance = () => {
 			</MissionBoard>
 			<Message />
 			{handleView(phase)}
-		</div>
+			<Rules onClick={openModal}>Rules</Rules>
+			<GameRules game={game?.name} modalOpen={modalOpen} closeModal={closeModal} />
+		</Container>
 	);
 };
+
 
 interface RoleProps { role: string }
 const Role = styled.span<RoleProps>`
@@ -111,7 +127,6 @@ const Role = styled.span<RoleProps>`
 const MissionBoard = styled.div`
 	display: flex;
 	align-items: center;
-	margin: 10px;
 `;
 
 interface ResultProps { result: 'passed' | 'failed' | '' }
@@ -135,4 +150,23 @@ const MissionResult = styled.div<ResultProps>`
 	}}
 `;
 
+/* Required for Rules Button component */
+const Container = styled.div`
+	position: relative;
+	height: 95vh;
+	width: 430px;
+	margin: 10px;
+`;
+
+const Rules = styled.button`
+	padding: 10px;
+	font-size: 20px;
+	position: absolute;
+	left: 10%;
+	width: 80%;
+
+	@media only screen and (min-height: 500px) {
+		bottom: 10px;
+	}
+`;
 export default Resistance;
