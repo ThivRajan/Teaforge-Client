@@ -10,10 +10,11 @@ import VoteView from './VoteView';
 import MissionView from './MissionView';
 import Message from '../../misc/Message';
 import GameModal from '../../misc/InfoModal';
+import Transition from './Transition';
+
 import Button from '../../../styles/Button';
 
-//TODO: warning 'cannot update'
-//TODO: display transition messages between phases
+//TODO: style transition messages
 //TODO: figure out font sizing problems with different devices
 //TODO: fix text margins (specifically on <p> elmeents)
 //TODO: clean up the colours
@@ -29,6 +30,7 @@ const Resistance = () => {
 	const [role, setRole] = useState('');
 	const [missions, setMission] = useState<Mission[]>([]);
 	const [phase, setPhase] = useState('');
+	const [transition, setTransition] = useState('');
 
 	const [leader, setLeader] = useState('');
 	const [team, setTeam] = useState<string[]>([]);
@@ -42,6 +44,8 @@ const Resistance = () => {
 
 	useEffect(() => {
 		if (name && game && socket && key) {
+			socket.on('transition', (message: string) => setTransition(message));
+
 			socket.on('role', (role: string) => setRole(role));
 			socket.on('missions', (missions: Mission[]) => setMission(missions));
 
@@ -69,8 +73,9 @@ const Resistance = () => {
 		}
 	}, [history, socket, key, game, name]);
 
+	//TODO: this error shouldn't come up once useParams is used
 	if (!game || !name || !key || !socket) {
-		return <>...Loading</>;
+		throw new Error('Missing information in store');
 	}
 
 	const handleView = (phase: string) => {
@@ -85,6 +90,10 @@ const Resistance = () => {
 				return <>...Loading Game</>;
 		}
 	};
+
+	if (transition) {
+		return <Transition setTransition={setTransition} message={transition} />;
+	}
 
 	if (winner) {
 		const result = role[0] === winner[0] ? 'won' : 'lost';
@@ -108,7 +117,7 @@ const Resistance = () => {
 			</MissionBoard>
 			<Message />
 			{handleView(phase)}
-			<Rules onClick={openModal}>Rules</Rules>
+			<RulesButton onClick={openModal}>Rules</RulesButton>
 			<GameModal game={game?.name} modalOpen={modalOpen}
 				closeModal={closeModal} inGame={true} />
 		</>
@@ -150,7 +159,7 @@ const MissionResult = styled.div<ResultProps>`
 `;
 
 /* Required for Rules Button component */
-const Rules = styled(Button.Filled)`
+const RulesButton = styled(Button.Filled)`
 	padding: 10px;
 	font-size: 20px;
 	position: absolute;

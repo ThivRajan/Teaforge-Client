@@ -8,7 +8,6 @@ import Home from './components/Home';
 import JoinForm from './components/JoinRoom';
 import CreateForm from './components/CreateRoom';
 import RoomLobby from './components/RoomLobby';
-
 import Resistance from './components/games/Resistance';
 
 import { Game } from './types';

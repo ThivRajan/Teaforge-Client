@@ -13,7 +13,8 @@ const MissionView: React.FC<{ team: string[] }> = ({ team }) => {
 		else return (
 			<div>
 				<p>
-					You&apos;re on the mission. Will you pass or fail it?
+					The team has been approved! You&apos;re on the mission.
+					Will you pass or fail it?
 				</p>
 				<Button.Filled onClick={() => {
 					socket?.emit('mission', 'pass');
@@ -33,7 +34,9 @@ const MissionView: React.FC<{ team: string[] }> = ({ team }) => {
 	} else {
 		const commaList = team.join(', ');
 		return (
-			<p>{commaList} are on the mission, please wait for them to finish.</p>
+			<p>The team has been approved! {commaList} are on the mission,
+				please wait for them to finish.
+			</p>
 		);
 	}
 
