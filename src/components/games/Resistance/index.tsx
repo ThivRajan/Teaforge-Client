@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { useHistory } from 'react-router-dom';
 import { useStateValue } from '../../../state';
+import { Votes } from '../../../types';
 
 import TeamView from './TeamView';
 import VoteView from './VoteView';
@@ -34,6 +35,7 @@ const Resistance = () => {
 
 	const [leader, setLeader] = useState('');
 	const [team, setTeam] = useState<string[]>([]);
+	const [votes, setVotes] = useState<Votes | null>(null);
 	const [winner, setWinner] = useState('');
 
 	const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -57,11 +59,15 @@ const Resistance = () => {
 				setTeam(team);
 			});
 
-			socket.on('teamApproved', () => setPhase('mission'));
-			socket.on('teamRejected', (leader: string) => {
+			socket.on('teamApproved', () => {
+				setPhase('mission');
+				setVotes(null);
+			});
+			socket.on('teamRejected', (leader: string, votes: Votes) => {
 				setPhase('teamCreation');
 				setTeam([]);
 				setLeader(leader);
+				setVotes(votes);
 			});
 			socket.on('gameOver', (winner: string) => {
 				setWinner(winner);
@@ -81,7 +87,7 @@ const Resistance = () => {
 	const handleView = (phase: string) => {
 		switch (phase) {
 			case 'teamCreation':
-				return <TeamView leader={leader} team={team} />;
+				return <TeamView leader={leader} team={team} votes={votes} />;
 			case 'teamVoting':
 				return <VoteView leader={leader} team={team} />;
 			case 'mission':

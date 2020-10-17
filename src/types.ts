@@ -9,3 +9,8 @@ export type RoomInfo = {
 	players: string[];
 }
 
+/* Resistance Types */
+export interface Votes {
+	approve: string[];
+	reject: string[];
+}

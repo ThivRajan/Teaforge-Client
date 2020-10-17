@@ -1,35 +1,34 @@
 import React, { useState } from 'react';
 
-import { useStateValue } from '../../../state';
-
 import PlayerList from './PlayerList';
 import Button from '../../../styles/Button';
 
+import { useStateValue } from '../../../state';
+
 const VoteView: React.FC<{ leader: string; team: string[] }> = ({ leader, team }) => {
-	const [{ socket, game },] = useStateValue();
+	const [{ socket, game, name },] = useStateValue();
 	const [submitted, setSubmitted] = useState(false);
 
 	const showButtons = () => {
 		if (submitted) return <p>You have voted. Waiting on the other players.</p>;
-		else {
-			return (
-				<>
-					<Button.Filled onClick={() => {
-						socket?.emit('vote', 'approve');
-						setSubmitted(true);
-					}}>
-						Approve
-					</Button.Filled>
+		return (
+			<>
+				<Button.Filled onClick={() => {
+					socket?.emit('vote', 'approve', name);
+					setSubmitted(true);
+				}}>
+					Approve
+				</Button.Filled>
 
-					<Button.Filled onClick={() => {
-						socket?.emit('vote', 'reject');
-						setSubmitted(true);
-					}}>
-						Reject
-					</Button.Filled>
-				</>
-			);
-		}
+				<Button.Filled onClick={() => {
+					socket?.emit('vote', 'reject', name);
+					setSubmitted(true);
+				}}>
+					Reject
+				</Button.Filled>
+			</>
+		);
+
 	};
 
 	return (
