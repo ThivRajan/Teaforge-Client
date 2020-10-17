@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import GameRules from './GameRules';
+import InfoModal from './InfoModal';
 import Players from '../../styles/Players';
 import { Card, CardContainer } from '../../styles/Card';
 
@@ -39,7 +39,8 @@ const GameCard: React.FC<{ game: Game; imgSrc: string; description: string; play
 						<Players players={playerCount} />
 					</div>
 				</Card>
-				<GameRules game={game} modalOpen={modalOpen} closeModal={closeModal} />
+				<InfoModal game={game} modalOpen={modalOpen}
+					closeModal={closeModal} inGame={false} />
 			</>
 		);
 	};

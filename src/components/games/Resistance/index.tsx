@@ -10,9 +10,8 @@ import VoteView from './VoteView';
 import MissionView from './MissionView';
 import Message from '../../misc/Message';
 
-import GameRules from '../../misc/GameRules';
+import GameModal from '../../misc/InfoModal';
 
-//TODO: Figure out a better way to organize game rules (in case of more games)
 //TODO: style Rules Button
 //TODO: warning 'cannot update'
 //TODO: display transition messages between phases
@@ -99,7 +98,7 @@ const Resistance = () => {
 	}
 
 	return (
-		<Container>
+		<>
 			<h1>Role:{' '}<Role role={role}>{role}</Role></h1>
 			<MissionBoard>
 				{missions.map((mission, index) =>
@@ -111,8 +110,9 @@ const Resistance = () => {
 			<Message />
 			{handleView(phase)}
 			<Rules onClick={openModal}>Rules</Rules>
-			<GameRules game={game?.name} modalOpen={modalOpen} closeModal={closeModal} />
-		</Container>
+			<GameModal game={game?.name} modalOpen={modalOpen}
+				closeModal={closeModal} inGame={true} />
+		</>
 	);
 };
 
@@ -151,22 +151,16 @@ const MissionResult = styled.div<ResultProps>`
 `;
 
 /* Required for Rules Button component */
-const Container = styled.div`
-	position: relative;
-	height: 95vh;
-	width: 430px;
-	margin: 10px;
-`;
-
 const Rules = styled.button`
 	padding: 10px;
 	font-size: 20px;
 	position: absolute;
-	left: 10%;
-	width: 80%;
+	left: calc((100% - 430px)/2);
+	width: 430px;
 
 	@media only screen and (min-height: 500px) {
 		bottom: 10px;
 	}
 `;
+
 export default Resistance;
