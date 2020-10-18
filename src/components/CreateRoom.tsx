@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import Message from './misc/Message';
 import Form from '../styles/Form';
 import Button from '../styles/Button';
 
-import { RoomInfo } from '../types';
+import { Game, RoomInfo } from '../types';
 import { SERVER_URI } from '../constants';
 import { useStateValue } from '../state';
 import { setSocket, setName, setGame, setKey, setMessage } from '../state/reducer';
 
-const CreateForm: React.FC<{ gameName: string }> = ({ gameName }) => {
+const CreateForm: React.FC = () => {
 	const [name, setNameField] = useState('');
 	const [, dispatch] = useStateValue();
 	const history = useHistory();
+
+	interface ParamsType { gameName: Game }
+	const { gameName } = useParams<ParamsType>();
+
+	useEffect(() => {
+		if (!Object.values(Game).includes(gameName))
+			history.push('/');
+	});
 
 	const handleCreate = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();

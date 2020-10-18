@@ -42,9 +42,8 @@ const App = () => {
 					<JoinForm />
 				</Route>
 
-				{/*TODO: use param matching and replace resistance with wildcard(*) */}
-				<Route path={`/create/${Game.Resistance}`}>
-					<CreateForm gameName={Game.Resistance} />
+				<Route path={'/create/:gameName'}>
+					<CreateForm />
 				</Route>
 
 				<Route path="/">
