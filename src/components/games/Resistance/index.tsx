@@ -15,10 +15,7 @@ import Transition from './Transition';
 
 import Button from '../../../styles/Button';
 
-//TODO: figure out font sizing problems with different devices
-//TODO: fix text margins (specifically on <p> elmeents)
 //TODO: clean up the colours
-//TODO: option buttons at the end of the game (leave game, new game maybe)
 
 interface Mission {
 	numPlayers: number;
@@ -78,9 +75,11 @@ const Resistance = () => {
 		}
 	}, [history, socket, key, game, name]);
 
-	//TODO: this error shouldn't come up once useParams is used
+	//TODO-DONE: this error shouldn't come up once useParams is used
+	//TODO-DONE: throw error
 	if (!game || !name || !key || !socket) {
-		throw new Error('Missing information in store');
+		return <>...Loading Game</>;
+		// throw new Error('Missing information in store');
 	}
 
 	const handleView = (phase: string) => {
@@ -112,7 +111,7 @@ const Resistance = () => {
 	}
 
 	return (
-		<>
+		<GameContainer>
 			<h1>Role:{' '}<Role role={role}>{role}</Role></h1>
 			<MissionBoard>
 				{missions.map((mission, index) =>
@@ -126,9 +125,13 @@ const Resistance = () => {
 			<RulesButton onClick={openModal}>Rules</RulesButton>
 			<GameModal game={game?.name} modalOpen={modalOpen}
 				closeModal={closeModal} inGame={true} />
-		</>
+		</GameContainer>
 	);
 };
+
+const GameContainer = styled.div`
+	margin: 12px;
+`;
 
 
 interface RoleProps { role: string }
@@ -164,14 +167,14 @@ const MissionResult = styled.div<ResultProps>`
 	}}
 `;
 
-/* Required for Rules Button component */
 const RulesButton = styled(Button.Filled)`
 	padding: 10px;
 	font-size: 20px;
 	position: absolute;
-	left: calc((100% - 430px)/2);
-	width: 430px;
-
+	margin: 0 0 10px 0;
+	width: 400px;
+	left: calc((100% - 400px)/2);
+	
 	@media only screen and (min-height: 500px) {
 		bottom: 10px;
 	}

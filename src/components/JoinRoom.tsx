@@ -30,7 +30,7 @@ const JoinForm = () => {
 
 	const handleJoin = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
-		socket.emit('join', name, key);
+		socket.emit('join', name, key.toUpperCase());
 	};
 
 	return (
@@ -44,7 +44,7 @@ const JoinForm = () => {
 				></input>
 				<br />
 				<input placeholder="Room Key"
-					value={key}
+					className={'key'} value={key}
 					onChange={event => setKeyField(event.target.value)}
 				></input>
 				<br />
