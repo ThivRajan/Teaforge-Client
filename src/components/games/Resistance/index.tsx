@@ -15,7 +15,6 @@ import Transition from './Transition';
 
 import Button from '../../../styles/Button';
 
-//TODO: style transition messages
 //TODO: figure out font sizing problems with different devices
 //TODO: fix text margins (specifically on <p> elmeents)
 //TODO: clean up the colours
@@ -98,7 +97,8 @@ const Resistance = () => {
 	};
 
 	if (transition) {
-		return <Transition setTransition={setTransition} message={transition} />;
+		return <Transition role={role}
+			setTransition={setTransition} transition={transition} />;
 	}
 
 	if (winner) {

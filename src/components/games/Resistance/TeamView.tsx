@@ -14,17 +14,19 @@ const TeamView: React.FC<{ leader: string; team: string[]; votes: Votes | null }
 		const showVotes = () => {
 			if (votes) {
 				return (
-					<>
-						<h4>Old Voting Results</h4>
+					<div>
+						<VoteHeader>Voting Results</VoteHeader>
 						<VoteTable>
-							<p>Approvals</p>
-							{votes.approve.map(p => <li key={p}>{p}</li>)}
+							<div className={'approved'}>
+								<p>Approved</p>
+								{votes.approve.map(v => <li key={v}>{v}</li>)}
+							</div>
+							<div className={'rejected'}>
+								<p>Rejected</p>
+								{votes.reject.map(v => <li key={v}>{v}</li>)}
+							</div>
 						</VoteTable>
-						<VoteTable>
-							<p>Rejections</p>
-							{votes.reject.map(p => <li key={p}>{p}</li>)}
-						</VoteTable>
-					</>
+					</div>
 				);
 			}
 			return <></>;
@@ -75,8 +77,38 @@ const TeamView: React.FC<{ leader: string; team: string[]; votes: Votes | null }
 		}
 	};
 
-const VoteTable = styled.div`
+const VoteHeader = styled.h3`
+	margin-bottom: 0;
+	font-size: 30px;
+`;
 
+const VoteTable = styled.div`
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	width: 250px;
+	margin: auto;
+	
+
+	p {
+		margin-bottom: 5px;
+		font-weight: 600;
+		font-size: 25px;
+	}
+
+	li {
+		list-style: none;
+		margin-bottom: 3px;
+		font-weight: 300;
+		font-size: 20px;
+	}
+
+	.approved li {
+		color: red;
+	}
+
+	.rejected li {
+		color: green;
+	}
 `;
 
 export default TeamView;
