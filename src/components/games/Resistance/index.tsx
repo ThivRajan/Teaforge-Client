@@ -16,11 +16,17 @@ import Transition from './Transition';
 import Button from '../../../styles/Button';
 
 //TODO: clean up the colours
+//TODO: tsconfig
 
 interface Mission {
 	numPlayers: number;
 	result: 'passed' | 'failed' | '';
 }
+
+const EVENTS = ['role', 'missions', 'teamCreation', 'teamLeader',
+	'teamUpdate', 'teamConfirm', 'teamApproved', 'teamRejected',
+	'gameOver', 'playerDisconnected', 'transition',
+	'update', 'disconnect', 'start'];
 
 const Resistance = () => {
 	const [{ socket, name, key, game },] = useStateValue();
@@ -69,17 +75,21 @@ const Resistance = () => {
 				setWinner(winner);
 			});
 
+			//TODO: remove all events, not just the one from this game
+			socket.on('playerDisconnected', () => {
+				EVENTS.forEach(event => socket.off(event));
+				setTransition('Player has disconnected, you will be sent to the lobby');
+				setTimeout(() => history.push(`/${game.name}/${key}`), 3000);
+			});
+
 			socket.emit('ready');
 		} else {
 			history.push('/join');
 		}
 	}, [history, socket, key, game, name]);
 
-	//TODO-DONE: this error shouldn't come up once useParams is used
-	//TODO-DONE: throw error
 	if (!game || !name || !key || !socket) {
-		return <>...Loading Game</>;
-		// throw new Error('Missing information in store');
+		return <>...Game disconnected please refresh</>;
 	}
 
 	const handleView = (phase: string) => {
@@ -132,7 +142,6 @@ const Resistance = () => {
 const GameContainer = styled.div`
 	margin: 12px;
 `;
-
 
 interface RoleProps { role: string }
 const Role = styled.span<RoleProps>`

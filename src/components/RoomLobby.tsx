@@ -25,6 +25,7 @@ const RoomLobby = () => {
 				dispatch(setMessage('Server went down'));
 			});
 			socket.on('start', () => {
+				console.log('checking start');
 				history.push(`/${game.name}/${key}/play`);
 			});
 		} else {
