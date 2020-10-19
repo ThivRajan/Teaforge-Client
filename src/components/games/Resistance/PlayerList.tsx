@@ -22,10 +22,7 @@ const PlayerList: React.FC<{ players: string[] | undefined; team: string[] }> = 
 	);
 };
 
-interface PlayerProps {
-	chosen: boolean;
-}
-export const Player = styled.li<PlayerProps>`
+export const Player = styled.li<{ chosen: boolean }>`
 	list-style-type: none;
 	background: ${props => {
 		if (props.theme.darkMode) {
@@ -43,10 +40,11 @@ export const Player = styled.li<PlayerProps>`
 `;
 
 export const PlayerOption = styled(Player)`
-	:hover {
-		background: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
-		filter: ${props => props.chosen ? 'brightness(80%)' : 'none'};
-		cursor: pointer;
+	@media (hover: hover) {
+		:hover {
+			filter: ${props => props.chosen ? 'brightness(80%)' : 'none'};
+			cursor: pointer;
+		}
 	}
 `;
 

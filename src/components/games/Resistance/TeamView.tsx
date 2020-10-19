@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useStateValue } from '../../../state';
-import { Votes } from '../../../types';
+import { Votes } from '../../../types/resistance';
 
 import PlayerList, { List, PlayerOption } from './PlayerList';
 import Button from '../../../styles/Button';
@@ -88,7 +88,6 @@ const VoteTable = styled.div`
 	width: 250px;
 	margin: auto;
 	
-
 	p {
 		margin-bottom: 5px;
 		font-weight: 600;

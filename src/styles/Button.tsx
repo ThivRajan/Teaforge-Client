@@ -1,6 +1,9 @@
 import styled, { css } from 'styled-components';
 import { colors } from './Global';
 
+//TODO: add color props
+//TODO: in global's colors, add 2 sets of colors,
+//1 for light and 1 for dark mode, use a dictionary?
 export const buttonStyle = css`
 	margin-bottom: 1.2rem;
 	margin-right: 0.5rem;
@@ -27,24 +30,26 @@ const Outlined = styled.button`
 	color: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
 	border: 2px solid ${props => props.theme.darkMode ? colors.lightRed : colors.red};
 
-	:hover {
-		background: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
-		color: white;
-		cursor: pointer;
+	@media (hover: hover) {
+		:hover {
+			background: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
+			color: white;
+			cursor: pointer;
+		}
 	}
 `;
 
 const Filled = styled.button`
 	${buttonStyle}
-
 	background: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
 	color: white;
-
 	border: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
 
-	:hover {
-		cursor: pointer;
-		filter: brightness(80%);
+	@media (hover: hover) {
+		:hover {
+			cursor: pointer;
+			filter: brightness(80%);
+		}
 	}
 `;
 

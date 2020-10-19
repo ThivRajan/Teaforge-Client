@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
 import InfoContainer from '../../styles/Info';
-import Players from '../../styles/Players';
+import PlayersLabel from '../../styles/PlayersLabel';
 import Button from '../../styles/Button';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -68,7 +68,7 @@ const InfoModal: React.FC<{
 			<Goal />
 			{showButtons()}
 			<u>Rules</u>
-			<Players players={playerCount} />
+			<PlayersLabel players={playerCount} />
 			<Rules />
 		</InfoContainer>
 	);

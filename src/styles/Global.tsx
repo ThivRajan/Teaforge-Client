@@ -34,7 +34,7 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 	}
 
 	h1 {
-		font-size: 45px;
+		font-size: 40px;
 	}
 
 	h2 {

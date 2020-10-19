@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { useHistory } from 'react-router-dom';
 import { useStateValue } from '../../../state';
-import { Votes } from '../../../types';
+import { Role, Votes, MissionResult, Mission } from '../../../types/resistance';
 
 import TeamView from './TeamView';
 import VoteView from './VoteView';
@@ -15,13 +15,7 @@ import Transition from './Transition';
 
 import Button from '../../../styles/Button';
 
-//TODO: clean up the colours
-//TODO: tsconfig
-
-interface Mission {
-	numPlayers: number;
-	result: 'passed' | 'failed' | '';
-}
+//TODO: styles
 
 const EVENTS = ['role', 'missions', 'teamCreation', 'teamLeader',
 	'teamUpdate', 'teamConfirm', 'teamApproved', 'teamRejected',
@@ -30,7 +24,7 @@ const EVENTS = ['role', 'missions', 'teamCreation', 'teamLeader',
 
 const Resistance = () => {
 	const [{ socket, name, key, game },] = useStateValue();
-	const [role, setRole] = useState('');
+	const [role, setRole] = useState<Role | ''>('');
 	const [missions, setMission] = useState<Mission[]>([]);
 	const [phase, setPhase] = useState('');
 	const [transition, setTransition] = useState('');
@@ -38,7 +32,7 @@ const Resistance = () => {
 	const [leader, setLeader] = useState('');
 	const [team, setTeam] = useState<string[]>([]);
 	const [votes, setVotes] = useState<Votes | null>(null);
-	const [winner, setWinner] = useState('');
+	const [winner, setWinner] = useState<Role | ''>('');
 
 	const [modalOpen, setModalOpen] = useState<boolean>(false);
 	const openModal = (): void => setModalOpen(true);
@@ -50,7 +44,7 @@ const Resistance = () => {
 		if (name && game && socket && key) {
 			socket.on('transition', (message: string) => setTransition(message));
 
-			socket.on('role', (role: string) => setRole(role));
+			socket.on('role', (role: Role) => setRole(role));
 			socket.on('missions', (missions: Mission[]) => setMission(missions));
 
 			socket.on('teamCreation', () => setPhase('teamCreation'));
@@ -66,20 +60,20 @@ const Resistance = () => {
 				setVotes(null);
 			});
 			socket.on('teamRejected', (leader: string, votes: Votes) => {
+				console.log('rejected');
 				setPhase('teamCreation');
 				setTeam([]);
 				setLeader(leader);
 				setVotes(votes);
 			});
-			socket.on('gameOver', (winner: string) => {
+			socket.on('gameOver', (winner: Role) => {
 				setWinner(winner);
 			});
 
-			//TODO: remove all events, not just the one from this game
 			socket.on('playerDisconnected', () => {
 				EVENTS.forEach(event => socket.off(event));
 				setTransition('Player has disconnected, you will be sent to the lobby');
-				setTimeout(() => history.push(`/${game.name}/${key}`), 3000);
+				setTimeout(() => history.push(`/${game.name}/${key}`), 2600);
 			});
 
 			socket.emit('ready');
@@ -106,8 +100,7 @@ const Resistance = () => {
 	};
 
 	if (transition) {
-		return <Transition role={role}
-			setTransition={setTransition} transition={transition} />;
+		return <Transition setTransition={setTransition} transition={transition} />;
 	}
 
 	if (winner) {
@@ -115,19 +108,19 @@ const Resistance = () => {
 		return (
 			<>
 				<h1>You {result}!</h1>
-				<h2>{' '} <Role role={winner}>{winner}</Role> won</h2>
+				<h2>{' '} <RoleText role={winner}>{winner}</RoleText> won</h2>
 			</>
 		);
 	}
 
 	return (
 		<GameContainer>
-			<h1>Role:{' '}<Role role={role}>{role}</Role></h1>
+			<h2>Role:{' '}<RoleText role={role}>{role}</RoleText></h2>
 			<MissionBoard>
 				{missions.map((mission, index) =>
-					<MissionResult key={index} result={mission.result}>
+					<MissionToken key={index} result={mission.result}>
 						{mission.numPlayers}
-					</MissionResult>)
+					</MissionToken>)
 				}
 			</MissionBoard>
 			<Message />
@@ -143,11 +136,11 @@ const GameContainer = styled.div`
 	margin: 12px;
 `;
 
-interface RoleProps { role: string }
-const Role = styled.span<RoleProps>`
-	color: ${props => props.role === 'spies' || props.role === 'spy'
-		? 'red'
-		: 'blue'};
+const RoleText = styled.span<{ role: Role | '' }>`
+	color: ${(props) => {
+		if (props.role) return props.role === Role.Resistance ? 'blue' : 'red';
+		else return 'none';
+	}}
 `;
 
 const MissionBoard = styled.div`
@@ -155,8 +148,7 @@ const MissionBoard = styled.div`
 	align-items: center;
 `;
 
-interface ResultProps { result: 'passed' | 'failed' | '' }
-const MissionResult = styled.div<ResultProps>`
+const MissionToken = styled.div<{ result: MissionResult | '' }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -177,16 +169,13 @@ const MissionResult = styled.div<ResultProps>`
 `;
 
 const RulesButton = styled(Button.Filled)`
-	padding: 10px;
-	font-size: 20px;
+	font-size: 15px;
+	padding: 5px;
+	width: max-content;
+
 	position: absolute;
-	margin: 0 0 10px 0;
-	width: 400px;
-	left: calc((100% - 400px)/2);
-	
-	@media only screen and (min-height: 500px) {
-		bottom: 10px;
-	}
+	left: 0;
+	top: 13px;
 `;
 
 export default Resistance;

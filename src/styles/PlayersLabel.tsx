@@ -6,7 +6,7 @@ import { colors } from './Global';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Span = styled.span`
+const Container = styled.span`
 	padding: 5px;
 	background: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
 	color: white;
@@ -20,10 +20,10 @@ const Span = styled.span`
 	font-weight: 300;
 `;
 
-const Players: React.FC<{ players: string }> = ({ players }) => (
-	<Span>
+const PlayersLabel: React.FC<{ players: string }> = ({ players }) => (
+	<Container>
 		<FontAwesomeIcon icon={faUser} /> {players}
-	</Span>
+	</Container>
 );
 
-export default Players;
+export default PlayersLabel;

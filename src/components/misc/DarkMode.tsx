@@ -40,15 +40,20 @@ const ToggleButton = styled.button`
 	border: none;
 	border-radius: 5px;
 	background: none;
-	outline: none;
 
 	transition: background 200ms;
 
 	color: ${props => props.theme.darkMode ? 'white' : 'black'};
 
-	:hover {
-		background: ${props => props.theme.darkMode ? 'grey' : 'lightgrey'};;
-		cursor: pointer;
+	@media (hover: hover) {
+		:hover {
+			background: ${props => props.theme.darkMode ? 'grey' : 'lightgrey'};;
+			cursor: pointer;
+		}
+	}
+
+	:focus {
+		outline: none;
 	}
 `;
 

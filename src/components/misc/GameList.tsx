@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import InfoModal from './InfoModal';
-import Players from '../../styles/Players';
+import PlayersLabel from '../../styles/PlayersLabel';
 import { Card, CardContainer } from '../../styles/Card';
 
 import fist from '../../assets/fist.png';
@@ -36,7 +36,7 @@ const GameCard: React.FC<{ game: Game; imgSrc: string; description: string; play
 					<div>
 						<h2>{game}</h2>
 						<p>{description}</p>
-						<Players players={playerCount} />
+						<PlayersLabel players={playerCount} />
 					</div>
 				</Card>
 				<InfoModal game={game} modalOpen={modalOpen}
