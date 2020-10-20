@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { GlobalStyleProps, Color } from '../types';
 
 export const colors = {
 	red: '#ff4545',
@@ -7,9 +8,20 @@ export const colors = {
 	fg: '#454545'
 };
 
-type ThemeProps = { darkMode: boolean };
-type GlobalStyleProps = { theme: ThemeProps };
+//TODO: use this syntax in the server too
+export const dark: { [key in Color]?: string } = {
+	[Color.Red]: '#c97575',
+	[Color.Blue]: 'blue',
+	[Color.BG]: '#292929',
+	[Color.Font]: 'white'
+};
 
+export const light: { [key in Color]?: string } = {
+	[Color.Red]: '#ff4545',
+	[Color.Blue]: 'lightblue',
+	[Color.BG]: 'white',
+	[Color.Font]: 'black'
+};
 
 const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 	body {
@@ -18,8 +30,8 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 		text-align: center;
 		font-family: Signika, sans-serif;
 
-		background: ${props => props.theme.darkMode ? colors.bg : 'white'};
-		color: ${props => props.theme.darkMode ? 'white' : 'black'};
+		background: ${props => props.theme.darkMode ? dark[Color.BG] : light[Color.BG]};
+		color: ${props => props.theme.darkMode ? dark[Color.Font] : light[Color.Font]};
 	}
 
 	i, p, u {

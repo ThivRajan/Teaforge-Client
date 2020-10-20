@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import Button from '../styles/Button';
 import GameList from './misc/GameList';
 
-
 const SubHeader = styled.p`
 	font-size: 23px;
 	margin-top: 0;

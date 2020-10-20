@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { colors } from '../../../styles/Global';
+// import 
 
 const PlayerList: React.FC<{ players: string[] | undefined; team: string[] }> = ({ players, team }) => {
 	return (

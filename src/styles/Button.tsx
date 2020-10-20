@@ -1,9 +1,7 @@
 import styled, { css } from 'styled-components';
-import { colors } from './Global';
+import { dark, light } from './Global';
+import { Color, ButtonProps } from '../types';
 
-//TODO: add color props
-//TODO: in global's colors, add 2 sets of colors,
-//1 for light and 1 for dark mode, use a dictionary?
 export const buttonStyle = css`
 	margin-bottom: 1.2rem;
 	margin-right: 0.5rem;
@@ -23,27 +21,32 @@ export const buttonStyle = css`
 	}
 `;
 
-const Outlined = styled.button`
+const getColor = (color: Color | undefined, darkMode: boolean) => {
+	if (color) return darkMode ? dark[color] : light[color];
+	return darkMode ? dark[Color.Red] : light[Color.Red];
+};
+
+const Outlined = styled.button<ButtonProps>`
 	${buttonStyle}
 
-	background: ${props => props.theme.darkMode ? colors.bg : 'white'};
-	color: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
-	border: 2px solid ${props => props.theme.darkMode ? colors.lightRed : colors.red};
+	background: ${props => props.theme.darkMode ? dark[Color.BG] : light[Color.BG]};
+	color: ${props => getColor(props.color, props.theme.darkMode)};
+	border: 2px solid ${props => getColor(props.color, props.theme.darkMode)};
 
 	@media (hover: hover) {
 		:hover {
-			background: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
+			background: ${props => getColor(props.color, props.theme.darkMode)};
 			color: white;
 			cursor: pointer;
 		}
 	}
 `;
 
-const Filled = styled.button`
+const Filled = styled.button<ButtonProps>`
 	${buttonStyle}
-	background: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
+	background: ${props => getColor(props.color, props.theme.darkMode)};
 	color: white;
-	border: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
+	border: ${props => getColor(props.color, props.theme.darkMode)};
 
 	@media (hover: hover) {
 		:hover {
