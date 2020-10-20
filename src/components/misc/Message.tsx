@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { useStateValue } from '../../state';
 import { setMessage } from '../../state/reducer';
 
-import { colors } from '../../styles/Global';
+import { light } from '../../styles/Global';
+import { Color } from '../../types';
 
 const Message = () => {
 	const [{ message }, dispatch] = useStateValue();
@@ -19,7 +20,7 @@ const Message = () => {
 };
 
 const StyledMessage = styled.div`
-	color: ${colors.red};
+	color: ${light[Color.Red]};
 	font-size: 20px;
 `;
 

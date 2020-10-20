@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import { colors } from './Global';
+import { dark, light } from './Global';
+import { Color } from '../types';
 
 export const CardContainer = styled.div`
 	display: flex;
@@ -10,7 +11,7 @@ export const CardContainer = styled.div`
 
 export const Card = styled.div`
 	color: white;
-	background: ${props => props.theme.darkMode ? colors.fg : colors.bg};
+	background: ${props => props.theme.darkMode ? dark[Color.FG] : light[Color.FG]};
 
 	
 	border-radius: 3px;

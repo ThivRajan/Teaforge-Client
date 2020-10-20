@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colors } from '../../../styles/Global';
-// import 
+import { dark, light } from '../../../styles/Global';
+import { Color } from '../../../types';
 
 const PlayerList: React.FC<{ players: string[] | undefined; team: string[] }> = ({ players, team }) => {
 	return (
@@ -26,13 +26,8 @@ const PlayerList: React.FC<{ players: string[] | undefined; team: string[] }> = 
 export const Player = styled.li<{ chosen: boolean }>`
 	list-style-type: none;
 	background: ${props => {
-		if (props.theme.darkMode) {
-			if (props.chosen) return colors.lightRed;
-			return colors.fg;
-		} else {
-			if (props.chosen) return colors.red;
-			else return colors.bg;
-		}
+		if (props.chosen) return (props.theme.darkMode) ? dark[Color.Red] : light[Color.Red];
+		else return props.theme.darkMode ? dark[Color.FG] : light[Color.FG];
 	}};
 	color: white;
 	padding: 8px;

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import ReactModal from 'react-modal';
 
-import { colors } from './Global';
+import { dark, light } from './Global';
+import { Color } from '../types';
 
 const InfoContainer = styled(ReactModal)`
 	color: ${props => props.theme.darkMode ? 'white' : 'black'};
-	background: ${props => props.theme.darkMode ? colors.bg : 'white'};
+	background: ${props => props.theme.darkMode ? dark[Color.BG] : light[Color.BG]};
 	border: ${props => props.theme.darkMode ? 'none' : '1px solid black'};
 
 	text-align: left;

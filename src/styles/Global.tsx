@@ -1,18 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 import { GlobalStyleProps, Color } from '../types';
 
-export const colors = {
-	red: '#ff4545',
-	lightRed: '#c97575',
-	bg: '#292929',
-	fg: '#454545'
-};
-
 //TODO: use this syntax in the server too
 export const dark: { [key in Color]?: string } = {
 	[Color.Red]: '#c97575',
 	[Color.Blue]: 'blue',
 	[Color.BG]: '#292929',
+	[Color.FG]: '#454545',
 	[Color.Font]: 'white'
 };
 
@@ -20,6 +14,7 @@ export const light: { [key in Color]?: string } = {
 	[Color.Red]: '#ff4545',
 	[Color.Blue]: 'lightblue',
 	[Color.BG]: 'white',
+	[Color.FG]: '#292929',
 	[Color.Font]: 'black'
 };
 

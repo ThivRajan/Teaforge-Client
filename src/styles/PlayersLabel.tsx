@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colors } from './Global';
+import { dark, light } from './Global';
+import { Color } from '../types';
 
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.span`
 	padding: 5px;
-	background: ${props => props.theme.darkMode ? colors.lightRed : colors.red};
+	background: ${props => props.theme.darkMode ? dark[Color.Red] : light[Color.Red]};
 	color: white;
 	border-radius: 3px;
 
