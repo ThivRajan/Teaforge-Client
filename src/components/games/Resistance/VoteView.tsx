@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import PlayerList from './PlayerList';
 import Button from '../../../styles/Button';
 
+import { Color } from '../../../types';
 import { useStateValue } from '../../../state';
 
 const VoteView: React.FC<{ leader: string; team: string[] }> = ({ leader, team }) => {
@@ -16,7 +17,7 @@ const VoteView: React.FC<{ leader: string; team: string[] }> = ({ leader, team }
 				<Button.Filled onClick={() => {
 					socket?.emit('vote', 'approve', name);
 					setSubmitted(true);
-				}}>
+				}} color={Color.Blue}>
 					Approve
 				</Button.Filled>
 

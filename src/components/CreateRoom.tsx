@@ -6,7 +6,7 @@ import Message from './misc/Message';
 import Form from '../styles/Form';
 import Button from '../styles/Button';
 
-import { Game, RoomInfo } from '../types';
+import { Game, RoomInfo, Color } from '../types';
 import { SERVER_URI } from '../constants';
 import { useStateValue } from '../state';
 import { setSocket, setName, setGame, setKey, setMessage } from '../state/reducer';
@@ -48,9 +48,11 @@ const CreateForm: React.FC = () => {
 					onChange={event => setNameField(event.target.value)}>
 				</input>
 				<br />
-				<Button.Filled onClick={handleCreate}>Create</Button.Filled>
+				<Button.Filled onClick={handleCreate} color={Color.Blue}>
+					Create
+				</Button.Filled>
 				<Link to="/">
-					<Button.Outlined>Cancel</Button.Outlined>
+					<Button.Filled>Cancel</Button.Filled>
 				</Link>
 			</Form>
 		</>

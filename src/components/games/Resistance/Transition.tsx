@@ -10,7 +10,6 @@ const Transition: React.FC<{ transition: string; setTransition: Function }> =
 const Message = styled.p`
 	margin-top: 45vh;
 	font-size: 30px;
-	color: white;
 `;
 
 

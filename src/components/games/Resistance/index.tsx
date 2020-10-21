@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { useHistory } from 'react-router-dom';
 import { useStateValue } from '../../../state';
+import { Color } from '../../../types';
 import { Role, Votes, MissionResult, Mission } from '../../../types/resistance';
 
 import TeamView from './TeamView';
@@ -14,8 +15,13 @@ import GameModal from '../../misc/InfoModal';
 import Transition from './Transition';
 
 import Button from '../../../styles/Button';
+import { dark } from '../../../styles/Global';
 
-//TODO: styles
+//TODO: send players to lobby after game ends
+//TODO: colors for buttons
+//TODO: colors for vote table text
+//TODO: colors for mission board
+//TODO: recheck all margins (esp for Transition Messages)
 
 const EVENTS = ['role', 'missions', 'teamCreation', 'teamLeader',
 	'teamUpdate', 'teamConfirm', 'teamApproved', 'teamRejected',
@@ -138,7 +144,9 @@ const GameContainer = styled.div`
 
 const RoleText = styled.span<{ role: Role | '' }>`
 	color: ${(props) => {
-		if (props.role) return props.role === Role.Resistance ? 'blue' : 'red';
+		if (props.role) return props.role === Role.Resistance
+			? dark[Color.Blue]
+			: dark[Color.Red];
 		else return 'none';
 	}}
 `;
@@ -163,7 +171,9 @@ const MissionToken = styled.div<{ result: MissionResult | '' }>`
 	color: ${props => props.theme.darkMode ? 'white' : 'black'};
 
 	background: ${(props) => {
-		if (props.result) return props.result === 'passed' ? 'blue' : 'red';
+		if (props.result) return props.result === 'passed'
+			? dark[Color.Blue]
+			: dark[Color.Red];
 		return 'none';
 	}}
 `;

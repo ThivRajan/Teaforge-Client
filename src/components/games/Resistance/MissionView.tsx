@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { useStateValue } from '../../../state';
+import { Color } from '../../../types';
 
 import Button from '../../../styles/Button';
 
@@ -16,7 +17,7 @@ const MissionView: React.FC<{ team: string[] }> = ({ team }) => {
 				<Button.Filled onClick={() => {
 					socket?.emit('mission', 'pass');
 					setSubmitted(true);
-				}}>
+				}} color={Color.Blue}>
 					Pass
 				</Button.Filled>
 

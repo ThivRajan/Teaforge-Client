@@ -45,13 +45,18 @@ const Outlined = styled.button<ButtonProps>`
 const Filled = styled.button<ButtonProps>`
 	${buttonStyle}
 	background: ${props => getColor(props.color, props.theme.darkMode)};
-	color: white;
+	color: ${props => {
+		if (props.theme.darkMode) return 'white';
+		return props.color ? dark[props.color] : dark[Color.Red];
+	}};
 	border: ${props => getColor(props.color, props.theme.darkMode)};
+
+	transition: filter 300ms;
 
 	@media (hover: hover) {
 		:hover {
 			cursor: pointer;
-			filter: brightness(80%);
+			filter: brightness(85%);
 		}
 	}
 `;

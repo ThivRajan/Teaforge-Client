@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useStateValue } from '../../../state';
+import { Color } from '../../../types';
 import { Votes } from '../../../types/resistance';
 
 import PlayerList, { List, PlayerOption } from './PlayerList';
@@ -57,10 +58,10 @@ const TeamView: React.FC<{ leader: string; team: string[]; votes: Votes | null }
 								}
 							)
 						}
-						<Button.Outlined onClick={() =>
-							socket?.emit('teamConfirm')}>
+						<Button.Filled onClick={() =>
+							socket?.emit('teamConfirm')} color={Color.Blue}>
 							Confirm Team
-						</Button.Outlined>
+						</Button.Filled>
 					</List>
 				</div>
 			);

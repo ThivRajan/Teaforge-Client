@@ -4,13 +4,12 @@ import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
 import InfoContainer from '../../styles/Info';
-import PlayersLabel from '../../styles/PlayersLabel';
 import Button from '../../styles/Button';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Game } from '../../types';
+import { Game, Color } from '../../types';
 import Resistance from '../rules/Resistance';
 
 //TODO-DONE: modify resistance rules a little, maybe add a tldr,
@@ -26,13 +25,11 @@ const InfoModal: React.FC<{
 
 	let Goal: React.FC;
 	let Rules: React.FC;
-	let playerCount: string;
 
 	switch (game) {
 		case Game.Resistance:
 			Goal = Resistance.Goal;
 			Rules = Resistance.Rules;
-			playerCount = Resistance.playerCount;
 			break;
 		default:
 			throw Error('Game does not exist');
@@ -48,7 +45,7 @@ const InfoModal: React.FC<{
 				<Button.Filled>Join</Button.Filled>
 			</Link>
 			<Link to={`/create/${game}`}>
-				<Button.Filled>Create</Button.Filled>
+				<Button.Filled color={Color.Blue}>Create</Button.Filled>
 			</Link>
 		</div>);
 	};
@@ -68,7 +65,6 @@ const InfoModal: React.FC<{
 			<Goal />
 			{showButtons()}
 			<u>Rules</u>
-			<PlayersLabel players={playerCount} />
 			<Rules />
 		</InfoContainer>
 	);

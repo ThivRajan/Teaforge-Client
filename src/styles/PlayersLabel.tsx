@@ -9,8 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.span`
 	padding: 5px;
-	background: ${props => props.theme.darkMode ? dark[Color.Red] : light[Color.Red]};
-	color: white;
+	background: white;
+	color: ${props => props.theme.darkMode ? dark[Color.FG] : light[Color.FG]};
 	border-radius: 3px;
 
 	float: left;

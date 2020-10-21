@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import Message from './misc/Message';
 import Button from '../styles/Button';
 
-import { RoomInfo } from '../types';
+import { RoomInfo, Color } from '../types';
 import { useStateValue } from '../state';
 import { clearState } from '../state/reducer';
 import { setGame, setMessage } from '../state/reducer';
@@ -48,7 +48,7 @@ const RoomLobby = () => {
 	const startButton = () => {
 		if (name === game.host) {
 			return (
-				<Button.Filled onClick={handleStart}>
+				<Button.Filled onClick={handleStart} color={Color.Blue}>
 					Start
 				</Button.Filled>
 			);
@@ -69,7 +69,7 @@ const RoomLobby = () => {
 				)}
 			</ol>
 			<Link to="/">
-				<Button.Outlined onClick={handleLeave}>Leave</Button.Outlined>
+				<Button.Filled onClick={handleLeave}>Leave</Button.Filled>
 			</Link>
 			{startButton()}
 		</Lobby>

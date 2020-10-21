@@ -6,7 +6,7 @@ import Form from '../styles/Form';
 import Button from '../styles/Button';
 import Message from './misc/Message';
 
-import { RoomInfo } from '../types';
+import { RoomInfo, Color } from '../types';
 import { SERVER_URI } from '../constants';
 import { useStateValue } from '../state';
 import { setSocket, setName, setGame, setKey, setMessage } from '../state/reducer';
@@ -48,10 +48,12 @@ const JoinForm = () => {
 				></input>
 				<br />
 				<Link to="/lobby">
-					<Button.Filled onClick={handleJoin}>Join</Button.Filled>
+					<Button.Filled onClick={handleJoin} color={Color.Blue}>
+						Join
+					</Button.Filled>
 				</Link>
 				<Link to="/">
-					<Button.Outlined>Cancel</Button.Outlined>
+					<Button.Filled>Cancel</Button.Filled>
 				</Link>
 			</Form>
 		</>

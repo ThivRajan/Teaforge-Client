@@ -1,19 +1,20 @@
 import React from 'react';
 
-const playerCount = '5-10 players';
-
 const Goal = () => (
 	<i>Your goal is to either succeed or sabotage the mission</i>
 );
 
 const Rules = () => (
 	<>
+		<br />
+		<b>[5-10 Players]</b>
+		<br />
 		<p>
-			<b>
+			<i>
 				Players are allowed to talk at any point in the game, as long
 				as they are talking publicly (everyone must know what any one person
 				says).
-			</b>
+			</i>
 		</p>
 
 		<p>
@@ -57,4 +58,4 @@ const Rules = () => (
 	</>
 );
 
-export default { Goal, Rules, playerCount };
+export default { Goal, Rules };
