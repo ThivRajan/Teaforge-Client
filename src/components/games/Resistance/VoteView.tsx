@@ -13,7 +13,7 @@ const VoteView: React.FC<{ leader: string; team: string[] }> = ({ leader, team }
 	const showButtons = () => {
 		if (submitted) return <p>You have voted. Waiting on the other players.</p>;
 		return (
-			<>
+			<div style={{ paddingTop: '10px' }}>
 				<Button.Filled onClick={() => {
 					socket?.emit('vote', 'approve', name);
 					setSubmitted(true);
@@ -27,7 +27,7 @@ const VoteView: React.FC<{ leader: string; team: string[] }> = ({ leader, team }
 				}}>
 					Reject
 				</Button.Filled>
-			</>
+			</div>
 		);
 
 	};
@@ -39,7 +39,6 @@ const VoteView: React.FC<{ leader: string; team: string[] }> = ({ leader, team }
 			{showButtons()}
 		</div>
 	);
-
 };
 
 export default VoteView;

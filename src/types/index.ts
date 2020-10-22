@@ -13,6 +13,7 @@ export type RoomInfo = {
 export enum Color {
 	Red = 'red',
 	Blue = 'blue',
+	Green = 'green',
 	BG = 'bg',
 	FG = 'fg',
 	Font = 'font'

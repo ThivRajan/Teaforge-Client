@@ -26,8 +26,8 @@ const PlayerList: React.FC<{ players: string[] | undefined; team: string[] }> = 
 export const Player = styled.li<{ chosen: boolean }>`
 	list-style-type: none;
 	background: ${props => {
-		if (props.chosen) return (props.theme.darkMode) ? dark[Color.Red] : light[Color.Red];
-		else return props.theme.darkMode ? dark[Color.FG] : light[Color.FG];
+		if (props.chosen) return props.theme.darkMode ? dark[Color.Blue] : light[Color.Blue];
+		return props.theme.darkMode ? dark[Color.FG] : light[Color.FG];
 	}};
 	color: white;
 	padding: 8px;
@@ -38,7 +38,6 @@ export const Player = styled.li<{ chosen: boolean }>`
 export const PlayerOption = styled(Player)`
 	@media (hover: hover) {
 		:hover {
-			filter: ${props => props.chosen ? 'brightness(80%)' : 'none'};
 			cursor: pointer;
 		}
 	}
@@ -49,7 +48,8 @@ export const List = styled.div`
 	width: 300px;
 
 	button {
-		margin:auto;
+		margin: auto;
+		margin-top: 10px;
 		width: 100%;
 		font-size: 20px;
 	}

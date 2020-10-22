@@ -2,15 +2,16 @@ import { createGlobalStyle } from 'styled-components';
 import { GlobalStyleProps, Color } from '../types';
 
 export const dark: { [key in Color]?: string } = {
-	[Color.Red]: '#ff4545',
-	[Color.Blue]: '#1a7ebd',
+	[Color.Red]: '#e04343',
+	[Color.Blue]: '#2f90cc',
+	[Color.Green]: '#27d983',
 	[Color.BG]: '#292929',
 	[Color.FG]: '#454545',
 	[Color.Font]: 'white'
 };
 
 export const light: { [key in Color]?: string } = {
-	[Color.Red]: '#ffebeb',
+	[Color.Red]: '#ffe3e3',
 	[Color.Blue]: '#bae5ff',
 	[Color.BG]: 'white',
 	[Color.FG]: '#292929',
@@ -32,6 +33,10 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 		font-family: Signika, sans-serif;
 		font-weight: 300;
 		font-size: 20px;
+	}
+
+	u {
+		font-size: 25px;
 	}
 
 	b {

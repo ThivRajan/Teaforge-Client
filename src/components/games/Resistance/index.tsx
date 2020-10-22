@@ -186,6 +186,9 @@ const RulesButton = styled(Button.Filled)`
 	position: absolute;
 	left: 0;
 	top: 13px;
+
+	background: ${props => props.theme.darkMode ? 'white' : 'black'};
+	color: ${props => props.theme.darkMode ? 'black' : 'white'};
 `;
 
 export default Resistance;

@@ -5,7 +5,9 @@ import { useStateValue } from '../../../state';
 import { Color } from '../../../types';
 import { Votes } from '../../../types/resistance';
 
+
 import PlayerList, { List, PlayerOption } from './PlayerList';
+import { dark } from '../../../styles/Global';
 import Button from '../../../styles/Button';
 
 const TeamView: React.FC<{ leader: string; team: string[]; votes: Votes | null }>
@@ -19,11 +21,11 @@ const TeamView: React.FC<{ leader: string; team: string[]; votes: Votes | null }
 						<VoteHeader>Voting Results</VoteHeader>
 						<VoteTable>
 							<div className={'approved'}>
-								<p>Approved</p>
+								<u>Approved</u>
 								{votes.approve.map(v => <li key={v}>{v}</li>)}
 							</div>
 							<div className={'rejected'}>
-								<p>Rejected</p>
+								<u>Rejected</u>
 								{votes.reject.map(v => <li key={v}>{v}</li>)}
 							</div>
 						</VoteTable>
@@ -79,14 +81,14 @@ const TeamView: React.FC<{ leader: string; team: string[]; votes: Votes | null }
 	};
 
 const VoteHeader = styled.h3`
-	margin-bottom: 0;
+	margin-bottom: 15px;
 	font-size: 30px;
 `;
 
 const VoteTable = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	width: 250px;
+	width: 350px;
 	margin: auto;
 	
 	p {
@@ -103,11 +105,13 @@ const VoteTable = styled.div`
 	}
 
 	.approved li {
-		color: red;
+		color: ${dark[Color.Green]};
+		margin: auto;
 	}
 
 	.rejected li {
-		color: green;
+		color: ${dark[Color.Red]};
+		margin: auto;
 	}
 `;
 
