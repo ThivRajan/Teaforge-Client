@@ -15,12 +15,9 @@ import GameModal from '../../misc/InfoModal';
 import Transition from './Transition';
 
 import Button from '../../../styles/Button';
-import { dark } from '../../../styles/Global';
+import { dark, light } from '../../../styles/Global';
 
 //TODO: send players to lobby after game ends
-//TODO: colors for buttons
-//TODO: colors for vote table text
-//TODO: colors for mission board
 //TODO: recheck all margins (esp for Transition Messages)
 
 const EVENTS = ['role', 'missions', 'teamCreation', 'teamLeader',
@@ -167,14 +164,13 @@ const MissionToken = styled.div<{ result: MissionResult | '' }>`
 	font-size: 30px;
 	
 	border-radius: 50%;
-	border: 2px solid ${props => props.theme.darkMode ? 'white' : 'black'};
-	color: ${props => props.theme.darkMode ? 'white' : 'black'};
+	color: white;
 
 	background: ${(props) => {
 		if (props.result) return props.result === 'passed'
 			? dark[Color.Blue]
 			: dark[Color.Red];
-		return 'none';
+		else return props.theme.darkMode ? dark[Color.FG] : light[Color.FG];
 	}}
 `;
 

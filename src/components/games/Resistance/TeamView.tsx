@@ -10,6 +10,7 @@ import PlayerList, { List, PlayerOption } from './PlayerList';
 import { dark } from '../../../styles/Global';
 import Button from '../../../styles/Button';
 
+//TODO: maybe move votetable into its own component
 const TeamView: React.FC<{ leader: string; team: string[]; votes: Votes | null }>
 	= ({ leader, team, votes }) => {
 		const [{ socket, name, game },] = useStateValue();
