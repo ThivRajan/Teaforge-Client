@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import React from 'react';
 import styled from 'styled-components';
 

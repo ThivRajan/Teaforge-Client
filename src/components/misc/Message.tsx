@@ -22,6 +22,7 @@ const Message = () => {
 const StyledMessage = styled.div`
 	color: ${dark[Color.Red]};
 	font-size: 20px;
+	margin: 10px;
 `;
 
 export default Message;

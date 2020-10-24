@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -22,7 +21,7 @@ import { dark, light } from '../../../styles/Global';
 const EVENTS = ['role', 'missions', 'teamCreation', 'teamLeader',
 	'teamUpdate', 'teamConfirm', 'teamApproved', 'teamRejected',
 	'gameOver', 'playerDisconnected', 'transition',
-	'update', 'disconnect', 'start'];
+	'update', 'start'];
 
 const Resistance = () => {
 	const [{ socket, name, key, game }, dispatch] = useStateValue();
@@ -62,7 +61,6 @@ const Resistance = () => {
 				setVotes(null);
 			});
 			socket.on('teamRejected', (leader: string, votes: Votes) => {
-				console.log('rejected');
 				setPhase('teamCreation');
 				setTeam([]);
 				setLeader(leader);

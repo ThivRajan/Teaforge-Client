@@ -16,6 +16,7 @@ const RoomLobby = () => {
 
 	useEffect(() => {
 		if (game && socket && key) {
+			console.log('set evenst');
 			socket.on('update', (game: RoomInfo) => {
 				dispatch(setGame(game));
 			});
@@ -56,10 +57,14 @@ const RoomLobby = () => {
 		return null;
 	};
 
+	const playersNeeded = (game.reqPlayers - game.players.length) > 0
+		? (game.reqPlayers - game.players.length)
+		: 0;
+
 	return (
 		<Lobby>
 			<h1>{`${game.name}: ${key}`}</h1>
-			<p>Need {game.reqPlayers - game.players.length} more players to start</p>
+			<p>Need {playersNeeded} more players to start</p>
 			<Message />
 			<ol>
 				{game.players.map(p =>
@@ -78,10 +83,18 @@ const RoomLobby = () => {
 
 const Lobby = styled.div`
 	ol {
-		list-style: decimal inside;
+		list-style: decimal;
+		
+		width: max-content;
+		margin: auto;
 		margin-bottom: 20px;
+	
 		font-size: 20px;
 		font-weight: 300;
+
+		li {
+			text-align: left;
+		}
 	}
 `;
 

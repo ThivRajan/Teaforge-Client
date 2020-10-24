@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { State } from './state';
 import { RoomInfo } from '../types';
 

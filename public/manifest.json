@@ -1,9 +1,7 @@
 {
-	"short_name": "React App",
-	"name": "Create React App Sample",
-	"icons": [
-
-	],
+	"short_name": "Teaforge",
+	"name": "Teaforge Games",
+	"icons": [],
 	"start_url": ".",
 	"display": "standalone",
 	"theme_color": "#000000",
