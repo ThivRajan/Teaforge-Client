@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import { useStateValue } from '../../../state';
 import { Color } from '../../../types';
@@ -7,32 +6,15 @@ import { Votes } from '../../../types/resistance';
 
 
 import PlayerList, { List, PlayerOption } from './PlayerList';
-import { dark } from '../../../styles/Global';
+import VoteResults from './VoteResults';
 import Button from '../../../styles/Button';
 
-//TODO: maybe move votetable into its own component
 const TeamView: React.FC<{ leader: string; team: string[]; votes: Votes | null }>
 	= ({ leader, team, votes }) => {
 		const [{ socket, name, game },] = useStateValue();
 
 		const showVotes = () => {
-			if (votes) {
-				return (
-					<div>
-						<VoteHeader>Voting Results</VoteHeader>
-						<VoteTable>
-							<div className={'approved'}>
-								<u>Approved</u>
-								{votes.approve.map(v => <li key={v}>{v}</li>)}
-							</div>
-							<div className={'rejected'}>
-								<u>Rejected</u>
-								{votes.reject.map(v => <li key={v}>{v}</li>)}
-							</div>
-						</VoteTable>
-					</div>
-				);
-			}
+			if (votes) return (<VoteResults votes={votes} />);
 			return <></>;
 		};
 
@@ -80,40 +62,5 @@ const TeamView: React.FC<{ leader: string; team: string[]; votes: Votes | null }
 			);
 		}
 	};
-
-const VoteHeader = styled.h3`
-	margin-bottom: 15px;
-	font-size: 30px;
-`;
-
-const VoteTable = styled.div`
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	width: 350px;
-	margin: auto;
-	
-	p {
-		margin-bottom: 5px;
-		font-weight: 600;
-		font-size: 25px;
-	}
-
-	li {
-		list-style: none;
-		margin-bottom: 3px;
-		font-weight: 300;
-		font-size: 20px;
-	}
-
-	.approved li {
-		color: ${dark[Color.Green]};
-		margin: auto;
-	}
-
-	.rejected li {
-		color: ${dark[Color.Red]};
-		margin: auto;
-	}
-`;
 
 export default TeamView;

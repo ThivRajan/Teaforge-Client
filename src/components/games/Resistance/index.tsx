@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { useHistory } from 'react-router-dom';
-import { useStateValue } from '../../../state';
+import { useStateValue, setMessage } from '../../../state';
 import { Color } from '../../../types';
 import { Role, Votes, MissionResult, Mission } from '../../../types/resistance';
 
 import TeamView from './TeamView';
-import VoteView from './VoteView';
+import VoteView from './VotingView';
 import MissionView from './MissionView';
 import Message from '../../misc/Message';
 import GameModal from '../../misc/InfoModal';
@@ -17,8 +17,7 @@ import Transition from './Transition';
 import Button from '../../../styles/Button';
 import { dark, light } from '../../../styles/Global';
 
-//TODO: send players to lobby after game ends
-//TODO: recheck all margins (esp for Transition Messages)
+//TODO-DONE: fix index.html
 
 const EVENTS = ['role', 'missions', 'teamCreation', 'teamLeader',
 	'teamUpdate', 'teamConfirm', 'teamApproved', 'teamRejected',
@@ -26,7 +25,7 @@ const EVENTS = ['role', 'missions', 'teamCreation', 'teamLeader',
 	'update', 'disconnect', 'start'];
 
 const Resistance = () => {
-	const [{ socket, name, key, game },] = useStateValue();
+	const [{ socket, name, key, game }, dispatch] = useStateValue();
 	const [role, setRole] = useState<Role | ''>('');
 	const [missions, setMission] = useState<Mission[]>([]);
 	const [phase, setPhase] = useState('');
@@ -71,19 +70,21 @@ const Resistance = () => {
 			});
 			socket.on('gameOver', (winner: Role) => {
 				setWinner(winner);
+				EVENTS.forEach(event => socket.off(event));
+				setTimeout(() => history.push(`/${game.name}/${key}`), 3000);
 			});
 
 			socket.on('playerDisconnected', () => {
 				EVENTS.forEach(event => socket.off(event));
-				setTransition('Player has disconnected, you will be sent to the lobby');
-				setTimeout(() => history.push(`/${game.name}/${key}`), 2600);
+				dispatch(setMessage('Player got disconnected so game ended'));
+				setTimeout(() => history.push(`/${game.name}/${key}`));
 			});
 
 			socket.emit('ready');
 		} else {
 			history.push('/join');
 		}
-	}, [history, socket, key, game, name]);
+	}, [history, socket, key, game, name, dispatch]);
 
 	if (!game || !name || !key || !socket) {
 		return <>...Game disconnected please refresh</>;
@@ -112,6 +113,7 @@ const Resistance = () => {
 			<>
 				<h1>You {result}!</h1>
 				<h2>{' '} <RoleText role={winner}>{winner}</RoleText> won</h2>
+				<p>Game is finished, you will be sent to the lobby.</p>
 			</>
 		);
 	}

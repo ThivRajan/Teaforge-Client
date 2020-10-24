@@ -8,7 +8,7 @@ const Transition: React.FC<{ transition: string; setTransition: Function }> =
 	};
 
 const Message = styled.p`
-	margin-top: 45vh;
+	margin: 40vh 15px;
 	font-size: 30px;
 `;
 
