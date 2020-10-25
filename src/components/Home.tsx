@@ -15,7 +15,7 @@ const Home = () => {
 	return (
 		<>
 			<h1>Teaforge</h1>
-			<SubHeader>Play classic games of deceipt online</SubHeader>
+			<SubHeader>Tabletop games of deceipt {'&'} deduction</SubHeader>
 			<Link to="/join">
 				<Button.Filled color={Color.Blue}>Join Game</Button.Filled>
 			</Link>
