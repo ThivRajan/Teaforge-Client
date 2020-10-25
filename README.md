@@ -10,9 +10,9 @@ of these games.
 
 ## About
 
-Frontend created with React. Currently running on http://teaforge.com/.
+Frontend created with React. Currently running on [teaforge.com](https://teaforge-server.herokuapp.com/).
 
-Backend created with Express and Socket.IO, currently running on [teaforge.com](https://teaforge-server.herokuapp.com/). Repository can be found [here](https://github.com/ThivagarNadarajan/Teaforge-Server).
+Backend created with Express and Socket.IO, currently running [here](https://github.com/ThivagarNadarajan/Teaforge-Server). Repository can be found [here](https://github.com/ThivagarNadarajan/Teaforge-Server).
 
 
 
