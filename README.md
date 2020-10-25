@@ -1,7 +1,7 @@
 # Teaforge Games
 
 Hobby project created as a place to play tabletop games of deceipt and deduction.
-This website non-profit and is not affiliated with any of the original publishers
+This website is non-profit and is not affiliated with any of the original publishers
 of these games.
 
 ## Current Games
