@@ -16,8 +16,6 @@ import Transition from './Transition';
 import Button from '../../../styles/Button';
 import { dark, light } from '../../../styles/Global';
 
-//TODO-DONE: window/tab icon
-
 const EVENTS = ['role', 'missions', 'teamCreation', 'teamLeader',
 	'teamUpdate', 'teamConfirm', 'teamApproved', 'teamRejected',
 	'gameOver', 'playerDisconnected', 'transition',

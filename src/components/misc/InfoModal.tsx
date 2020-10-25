@@ -14,6 +14,7 @@ import Resistance from '../rules/Resistance';
 //TODO-DONE: readme
 //TODO-DONE: modify resistance rules a little, maybe add a tldr,
 //maybe make the <i> block the tldr
+//TODO-DONE: window/tab icon
 
 const InfoModal: React.FC<{
 	game: Game;
