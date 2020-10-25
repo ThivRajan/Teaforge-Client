@@ -16,7 +16,6 @@ const RoomLobby = () => {
 
 	useEffect(() => {
 		if (game && socket && key) {
-			console.log('set evenst');
 			socket.on('update', (game: RoomInfo) => {
 				dispatch(setGame(game));
 			});

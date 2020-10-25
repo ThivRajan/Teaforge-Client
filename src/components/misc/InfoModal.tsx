@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Game, Color } from '../../types';
 import Resistance from '../rules/Resistance';
 
+//TODO-DONE: readme
 //TODO-DONE: modify resistance rules a little, maybe add a tldr,
 //maybe make the <i> block the tldr
 

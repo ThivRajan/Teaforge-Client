@@ -35,8 +35,9 @@ const TeamView: React.FC<{ leader: string; team: string[]; votes: Votes | null }
 									}
 									return (
 										<PlayerOption key={player} chosen={chosen}
-											onClick={() =>
-												socket?.emit('teamUpdate', action, player)}>
+											onClick={() => {
+												socket?.emit('teamUpdate', action, player);
+											}}>
 											{player}
 										</PlayerOption>
 									);
