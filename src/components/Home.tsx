@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { dark } from '../styles/Global';
+import { dark, light } from '../styles/Global';
 import Button from '../styles/Button';
 import GameList from './misc/GameList';
 
@@ -55,6 +55,12 @@ const Footer = styled.div`
 	a {
 		text-decoration: none;
 		color: ${dark[Color.Blue]};
+
+		@media (hover: hover) {
+			:hover {
+				color: ${light[Color.Blue]};
+			}
+		}
 	}
 
 	div {
