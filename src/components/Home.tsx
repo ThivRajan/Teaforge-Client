@@ -15,7 +15,7 @@ const Home = () => {
 	return (
 		<>
 			<h1>Teaforge Games</h1>
-			<SubHeader>Social games of deceit and deduction</SubHeader>
+			<SubHeader>Social Deduction Games</SubHeader>
 			<Link to="/join">
 				<Button.Filled color={Color.Blue}>Join Game</Button.Filled>
 			</Link>
