@@ -46,7 +46,7 @@ const Footer = styled.div`
 	width: calc(100% - 28px);
 	font-size: 19px;
 
-	@media only screen and (min-height: 425px) {
+	@media only screen and (min-height: 475px) {
 		position: absolute;
 		bottom: 0;
 		left: 0;	
