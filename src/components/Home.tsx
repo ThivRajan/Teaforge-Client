@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { dark, light } from '../styles/Global';
+import { dark } from '../styles/Global';
 import Button from '../styles/Button';
 import GameList from './misc/GameList';
 
@@ -26,6 +26,11 @@ const Home = () => {
 					target='_blank' rel='noopener noreferrer'>
 					Thivagar Nadarajan
 				</a>
+				<div>
+					Please send feedback or questions to {' '}
+					<a href="mailto: thiv.nadarajan@gmail.com">thiv.nadarajan@gmail.com</a>
+				</div>
+
 			</Footer>
 		</>
 	);
@@ -37,28 +42,23 @@ const SubHeader = styled.p`
 `;
 
 const Footer = styled.div`
-	position: absolute;
-	bottom: 0;
-	left: 0;
-
 	padding: 14px;
 	width: calc(100% - 28px);
-	
-	background: black;
-	color: ${light[Color.Red]};
+	font-size: 19px;
+
+	@media only screen and (min-height: 425px) {
+		position: absolute;
+		bottom: 0;
+		left: 0;	
+	}
 
 	a {
 		text-decoration: none;
-		padding: 5px;
-		color: ${dark[Color.Red]};
+		color: ${dark[Color.Blue]};
+	}
 
-		transition: color 100ms;
-
-		@media (hover: hover) {
-			:hover {
-				color: #b03737;
-			}
-		}
+	div {
+		font-size: 15px;
 	}
 `;
 
