@@ -1,13 +1,14 @@
 import React from 'react';
 
 const Goal = () => (
-	<i>Your goal is to either succeed or sabotage the mission</i>
+	<i>Your goal is to either succeed or sabotage the missions</i>
 );
 
+//TODO: try modifying, say rules out loud
 const Rules = () => (
 	<>
 		<br />
-		<b>[5-10 Players]</b>
+		<b>5-10 Players</b>
 		<br />
 		<p>
 			<i>
@@ -16,45 +17,24 @@ const Rules = () => (
 				says).
 			</i>
 		</p>
-
 		<p>
-			There are two roles: Resistance or Spies. The Spies win
-			if three missions fail, and the Resistance win if three missions
-			succeed. Before the game begins, each player will be shown a message
-			telling them their role. If you are a spy, then you will also
-			be told who the other spies are.
+			Players are split into two teams, Resistance or Spies. The goal of
+			the Resistance is to succeed the missions while the goal of the Spies
+			is to fail the missions. <b>The Resistance win if 3 missions succeed and
+			the Spies win if 3 missions fail.</b>
 		</p>
 		<p>
-			1. First, there is the team creation phase, where the team leader
-			will decide which players he/she wants on the mission. Note that
-			the team leader is rotated every turn (so the leader is always
-			a different person until everyone has been the leader).
+			Before each mission, a team leader will select based on the number of people
+			needed for each mission (which will be shown at the top). Then all the players
+			will vote to approve or reject the team. A team needs a majority approval
+			to go on the mission, otherwise it will be rejected. If a team is rejected, a
+			new team leader will try selecting a team.
 		</p>
 		<p>
-			2. Once the leader has selected members, everyone will vote for
-			approving the team or not. If there is a majority vote of approval,
-			then you&apos;ll move on to the next phase. If there isn&apos;t a
-			majority vote, then there will be a different leader and the game
-			goes back to the team creation phase.
+			Once a team is approved, they will go on the mission and each team member will
+			get the option to pass or fail the mission. <b>A mission will fail if even one
+			person fails the mission.</b> This will repeat until one team has won.
 		</p>
-		<p>
-			3. Once the team has gotten majority approval, you will move to
-			the mission phase. Everyone on the team will get an option to either
-			succeed or fail the mission. If there is even a single person who selects
-			&quot;fail&quot;, then the entire mission is considered to be a Fail. Once all
-			the team members have selected their option, you will be shown the mission
-			result (Success or Fail).
-		</p>
-		<p>
-			4. Now #1-3 will repeat until there are 3 successes (Resistance wins)
-			or 3 fails (Spies win).
-		</p>
-
-		<b>
-			Tip: If you are a spy, try to get either yourself or a fellow spy
-			to sneak onto the mission and fail it. If you are resistance, then try
-			to figure out who the spies are and stop them from going on the mission.
-		</b>
 	</>
 );
 
