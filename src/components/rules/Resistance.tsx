@@ -4,7 +4,6 @@ const Goal = () => (
 	<i>Your goal is to either succeed or sabotage the missions</i>
 );
 
-//TODO: try modifying, say rules out loud
 const Rules = () => (
 	<>
 		<br />
