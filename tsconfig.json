@@ -7,7 +7,6 @@
 			"esnext"
 		],
 		"module": "esnext",
-		"sourceMap": true,
 		"outDir": "./build/",
 		"strict": true,
 		"noUnusedLocals": true,
