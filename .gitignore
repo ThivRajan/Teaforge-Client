@@ -1,2 +1,4 @@
 .DS_Store
 node_modules
+react-app
+react-app-env.d.ts
