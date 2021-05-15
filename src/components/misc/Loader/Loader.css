@@ -1,0 +1,85 @@
+body {
+	font-size: 24px;
+}
+
+.dot-1 {
+	animation: visibility 2s linear infinite;
+}
+
+@keyframes visibility {
+	0% {
+		opacity: 1;
+	}
+
+	65% {
+		opacity: 1;
+	}
+
+	66% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+.dot-2 {
+	animation: visibility2 2s linear infinite;
+}
+
+@keyframes visibility2 {
+	0% {
+		opacity: 0;
+	}
+
+	21% {
+		opacity: 0;
+	}
+
+	22% {
+		opacity: 1;
+	}
+
+	65% {
+		opacity: 1;
+	}
+
+	66% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+.dot-3 {
+	animation: visibility3 2s linear infinite;
+}
+
+@keyframes visibility3 {
+	0% {
+		opacity: 0;
+	}
+
+	43% {
+		opacity: 0;
+	}
+
+	44% {
+		opacity: 1;
+	}
+
+	65% {
+		opacity: 1;
+	}
+
+	66% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
