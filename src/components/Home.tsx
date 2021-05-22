@@ -22,7 +22,7 @@ const Home = () => {
 			<GameList />
 			<Footer>
 				Made by {' '}
-				<a href="https://github.com/ThivagarNadarajan"
+				<a href="https://thivagar.com"
 					target='_blank' rel='noopener noreferrer'>
 					Thivagar Nadarajan
 				</a>
